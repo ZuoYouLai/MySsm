@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+
+    <context id="all" targetRuntime="MyBatis3">
+
+         <!-- 自动识别数据库关键字，默认false，如果设置为true，根据SqlReservedWords中定义的关键字列表；
+       			 一般保留默认值，遇到数据库关键字（Java关键字），使用columnOverride覆盖 -->
+        <property name="autoDelimitKeywords" value="true" />
+        <!-- 生成的Java文件的编码 -->
+        <property name="javaFileEncoding" value="utf-8" />
+        <!-- beginningDelimiter和endingDelimiter：指明数据库的用于标记数据库对象名的符号，比如ORACLE就是双引号，MYSQL默认是`反引号； -->
+        <property name="beginningDelimiter" value="`" />
+        <property name="endingDelimiter" value="`" />
+
+       
+        <property name="suppressTypeWarnings" value="true"/>
+        
+        <!-- 注释产生配置 -->
+		<commentGenerator>
+			<property name="suppressAllComments" value="false" />
+			<property name="suppressDate" value="false" />
+		</commentGenerator>
+        
+        
+		<!--数据库表 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/shushangyun?useUnicode=true&amp;characterEncoding=utf-8"
+                        userId="root"
+                        password="">
+        </jdbcConnection>
+
+ 		<!-- 类型转换 -->  
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="true"/>
+        </javaTypeResolver>
+
+		<!-- 生成实体类地址 -->
+        <javaModelGenerator targetPackage="com.shushangyunwap.persistence.domain"
+                            targetProject="target">
+              <!-- 是否在当前路径下新加一层schema,eg：fase路径com.emma.persistence.domain， true:com.emma.persistence.domain.[schemaName] -->                 
+            <property name="enableSubPackages" value="true"/>
+             <!-- 是否针对string类型的字段在set的时候进行trim调用 -->  
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+		 <!-- 生成mapxml文件 -->  
+        <sqlMapGenerator targetPackage="com.shushangyunwap.persistence.mybatis"
+                         targetProject="target">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+		<!-- 生成mapxml对应client，也就是接口dao 
+			1. XMLMAPPER：会生成Mapper接口，接口完全依赖XML；-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.shushangyunwap.persistence"
+                             targetProject="target">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+
+
+        <table tableName="sub_merchant_id_customers_prizes" domainObjectName="SubMerchantIdCustomersPrizes" >
+            <generatedKey column="id" sqlStatement="mysql" identity="true"/>
+        </table>
+
+
+
+
+
+        <!--
+            1.  schema  数据库名
+     	 	2.  tableName  表名
+     	 	3. 	domainObjectName  生成的domain类的名字，如果不设置，直接使用表名作为domain类的名字；可以设置为persistence.domainName，那么会自动把domainName类再放到persistence包里面
+
+
+     	 	 generatedKey用于生成生成主键的方法，如果设置了该元素，MBG会在生成的<insert>元素中生成一条正确的<selectKey>元素，该元素可选
+      	 	 column:主键的列名；
+           	 sqlStatement：要生成的selectKey语句(MySql 相当于selectKey的SQL为：SELECTLAST_INSERT_ID())
+
+        -->
+     
+
+
+    </context>
+</generatorConfiguration>

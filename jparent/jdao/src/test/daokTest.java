@@ -24,9 +24,10 @@ public class daokTest {
 //    @T
 
 
-//    @Test
-//    public void te1() {
-//        boolean kflg = StringUtils.isBlank(null);
-//        System.err.println(kflg);
-//    }
+
+    @Test
+    public void te1() {
+        boolean kflg = StringUtils.isBlank(null);
+        System.err.println(kflg);
+    }
 }

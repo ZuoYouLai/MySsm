@@ -23,7 +23,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <!--<scope>test</scope>-->
+            <scope>test</scope>
         </dependency>
 
         <!-- 添加mybatis的依赖 -->
@@ -40,10 +40,11 @@
             <groupId>com.github.miemiedev</groupId>
             <artifactId>mybatis-paginator</artifactId>
         </dependency>
-        <!--<dependency>
+        <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper</artifactId>
-        </dependency>-->
+        </dependency>
+
         <!-- MySql -->
         <dependency>
             <groupId>mysql</groupId>

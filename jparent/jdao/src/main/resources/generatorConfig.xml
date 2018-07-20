@@ -5,7 +5,6 @@
 
 <generatorConfiguration>
 
-
     <context id="all" targetRuntime="MyBatis3">
 
          <!-- 自动识别数据库关键字，默认false，如果设置为true，根据SqlReservedWords中定义的关键字列表；
@@ -29,7 +28,7 @@
         
 		<!--数据库表 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://127.0.0.1:3306/shushangyun?useUnicode=true&amp;characterEncoding=utf-8"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/stuproject?useUnicode=true&amp;characterEncoding=utf-8"
                         userId="root"
                         password="">
         </jdbcConnection>
@@ -40,7 +39,7 @@
         </javaTypeResolver>
 
 		<!-- 生成实体类地址 -->
-        <javaModelGenerator targetPackage="com.shushangyunwap.persistence.domain"
+        <javaModelGenerator targetPackage="com.jmp.sql.domain"
                             targetProject="target">
               <!-- 是否在当前路径下新加一层schema,eg：fase路径com.emma.persistence.domain， true:com.emma.persistence.domain.[schemaName] -->                 
             <property name="enableSubPackages" value="true"/>
@@ -49,21 +48,21 @@
         </javaModelGenerator>
 
 		 <!-- 生成mapxml文件 -->  
-        <sqlMapGenerator targetPackage="com.shushangyunwap.persistence.mybatis"
+        <sqlMapGenerator targetPackage="com.jmp.sql.xml"
                          targetProject="target">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
 		<!-- 生成mapxml对应client，也就是接口dao 
 			1. XMLMAPPER：会生成Mapper接口，接口完全依赖XML；-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.shushangyunwap.persistence"
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.jmp.sql.mapper"
                              targetProject="target">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
 
 
-        <table tableName="sub_merchant_id_customers_prizes" domainObjectName="SubMerchantIdCustomersPrizes" >
+        <table tableName="user" domainObjectName="User" >
             <generatedKey column="id" sqlStatement="mysql" identity="true"/>
         </table>
 

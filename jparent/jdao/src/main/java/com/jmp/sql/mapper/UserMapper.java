@@ -3,6 +3,7 @@ package com.jmp.sql.mapper;
 import com.jmp.sql.domain.User;
 import com.jmp.sql.domain.UserExample;
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {

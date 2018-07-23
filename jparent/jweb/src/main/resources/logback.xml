@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<property name="LOG_HOME" value="${TAS_HOME:-..}/logs"/>
+    <!-- Output to Console -->
+    <appender name="ConsoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder charset="UTF-8">
+            <pattern>%d %-4relative [%thread] %-5level %logger{35} [Line:%L] - %m%n</pattern>
+        </encoder>
+    </appender>
+
+ 
+
+    <appender name="base-logfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_HOME}/shushangyun-wap-api.log</file>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/shushangyun-wap-api.log-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>20MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d %-4relative [%thread] %-5level %logger{35} [Line:%L] - %m%n</pattern>
+        </encoder>
+    </appender>
+
+	
+	 <logger name="com.shushangyunwap.web" additivity="false">
+        <appender-ref ref="base-logfile"/>
+        <appender-ref ref="ConsoleAppender"/>
+    </logger>
+    
+     <logger name="com.shushangyunwap.biz" additivity="false">
+        <appender-ref ref="base-logfile"/>
+        <appender-ref ref="ConsoleAppender"/>
+    </logger>
+	
+	 <root level="info">
+        <appender-ref ref="base-logfile"/>
+        <appender-ref ref="ConsoleAppender"/>
+    </root>
+
+
+</configuration>  

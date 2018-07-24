@@ -11,10 +11,10 @@
  
 
     <appender name="base-logfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOG_HOME}/shushangyun-wap-api.log</file>
+        <file>${LOG_HOME}/jmp.log</file>
 
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_HOME}/shushangyun-wap-api.log-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>${LOG_HOME}/jmp.log-%d{yyyy-MM-dd}.log</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>20MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>

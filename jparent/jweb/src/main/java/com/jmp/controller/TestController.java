@@ -43,6 +43,7 @@ public class TestController {
     @RequestMapping(value = {"/getIp"})
     public String getIp(HttpServletRequest request, HttpServletResponse response) throws Exception{
         response.setContentType("text/html;charset=utf-8");
+        response.setCharacterEncoding("utf-8");
         LOG.info("path : {}",TestController.class.getResource("").toString());
         LOG.info("path : {}",TestController.class.getResource("/").toString());
         LOG.info("path : {}",TestController.class.getResource("").getPath());

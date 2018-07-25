@@ -55,6 +55,12 @@
             <artifactId>spring-context-support</artifactId>
         </dependency>
 
+        <!--ipip调用本地库的api-->
+        <dependency>
+            <groupId>com.qiniu</groupId>
+            <artifactId>ip17mon</artifactId>
+        </dependency>
+
     </dependencies>
 
 

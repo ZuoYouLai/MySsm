@@ -33,8 +33,4 @@
                  <bean class="com.emma.biz.filter.LoginInterceptor"/>
          </mvc:interceptor>
      </mvc:interceptors> -->
-
-
-
-
 </beans>

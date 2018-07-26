@@ -14,12 +14,12 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @RestController
-@RequestMapping("/test")
+@RequestMapping("/json")
 @Slf4j
 public class JsonAndHelperController {
 
     /**
-     * /test/log
+     * /json/log
      * lobok的测试
      * @return
      * @throws Exception
@@ -37,7 +37,7 @@ public class JsonAndHelperController {
 
 
     /**
-     * /test/list
+     * /json/list
      * helper获取对应的Service
      * @return
      * @throws Exception

@@ -40,4 +40,8 @@
 
     <context:component-scan base-package="com.jmp"></context:component-scan>
 
+    <!--ApplicationContextHelper工具类的内容-->
+    <bean id="applicationContextHelper" class="com.jmp.comm.ApplicationContextHelper" lazy-init="false"/>
+
+
 </beans>

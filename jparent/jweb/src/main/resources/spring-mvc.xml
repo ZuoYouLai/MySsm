@@ -31,6 +31,27 @@
                     </list>
                 </property>
             </bean>
+
+            <!--
+                DefaultAnnotationHandlerMapping &ndash;&gt; org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping
+                AnnotationMethodHandlerAdapter &ndash;&gt; org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter
+            -->
+            <!--<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">-->
+            <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+                <property name="messageConverters">
+                    <list>
+                        <ref bean="jsonHttpMessageConverter" />
+                    </list>
+                </property>
+            </bean>
+            <bean id="jsonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>application/json;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>-->
+
         </mvc:message-converters>
     </mvc:annotation-driven>
 

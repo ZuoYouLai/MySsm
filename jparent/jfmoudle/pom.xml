@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>jpojo</artifactId>
+    <artifactId>jfmoudle</artifactId>
 
     <dependencies>
         <dependency>
@@ -18,13 +18,14 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
-
         <!-- 单元测试 -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
+
 
 </project>

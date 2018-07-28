@@ -14,6 +14,7 @@
         <module>jservice</module>
         <module>jweb</module>
         <module>jpojo</module>
+        <module>jfmoudle</module>
     </modules>
 
 
@@ -52,6 +53,9 @@
         <ip17mon.version>0.2.1</ip17mon.version>
         <lombok.version>1.16.22</lombok.version>
         <jackson.version>1.9.13</jackson.version>
+        <validation.version>1.1.0.Final</validation.version>
+        <hibernate.version>5.2.4.Final</hibernate.version>
+        <glassfish.version>3.0.1-b0</glassfish.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -282,6 +286,24 @@
                 <artifactId>jackson-mapper-asl</artifactId>
                 <version>${jackson.version}</version>
             </dependency>
+
+            <!-- validator -->
+            <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>${validation.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>${hibernate.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.el</groupId>
+                <artifactId>javax.el-api</artifactId>
+                <version>2.2.4</version>
+            </dependency>
+
 
 
             <!-- https://mvnrepository.com/artifact/org.apache.tomcat.maven/tomcat8-maven-plugin -->

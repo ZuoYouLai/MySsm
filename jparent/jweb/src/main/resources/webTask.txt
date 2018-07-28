@@ -1,0 +1,19 @@
+1.解决response在controller返回乱码的解决方式：
+    A.在controller的请求头部的注解写上 produces = "text/plain;charset=utf-8" :
+         @RequestMapping(value = {"/xxxMethod"},produces = "text/plain;charset=utf-8")
+    B.在spring-mvc配置:
+        <!-- 处理请求返回json字符串的中文乱码问题 -->
+        <mvc:annotation-driven>
+            <mvc:message-converters>
+                <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                    <property name="supportedMediaTypes">
+                        <list>
+                            <value>application/json;charset=UTF-8</value>
+                        </list>
+                    </property>
+                </bean>
+            </mvc:message-converters>
+        </mvc:annotation-driven>
+
+
+2.

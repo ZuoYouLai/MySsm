@@ -1,10 +1,12 @@
 package com.jmp.controller;
 
 import com.jmp.comm.Utils.JsonUtil;
+import com.jmp.jpojo.ValidaTestBean;
 import com.jmp.service.UserService;
 import com.jmp.sql.domain.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import qiniu.ip17mon.LocationInfo;
@@ -13,7 +15,11 @@ import qiniu.ip17mon.Locator;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/test")
@@ -54,6 +60,38 @@ public class TestController {
         return ipInfo.toString();
     }
 
+
+
+    @RequestMapping(value = {"/valid"})
+    public String testParams(@RequestBody @Valid ValidaTestBean validaTestBean){
+        LOG.info("valid bean data : {}", JsonUtil.toJson(validaTestBean));
+        return "ok";
+    }
+
+
+    @RequestMapping(value = {"/zf"})
+    public String zfTest(String name) {
+        Map map = new HashMap();
+        map.put("name", name);
+        map.put("赖", "好哒");
+        LOG.info("data :{}",JsonUtil.toJson(map));
+        return JsonUtil.toJson(map);
+    }
+
+
+
+
+    @RequestMapping(value = {"/zf1"})
+    public void zfTest(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setHeader("Content-type", "text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        Map map = new HashMap();
+        map.put("name", "ni核实name");
+        map.put("赖", "好哒");
+        LOG.info("data :{}",JsonUtil.toJson(map));
+        response.getWriter().write(JsonUtil.toJson(map));
+        response.getWriter().flush();
+    }
 
 
 

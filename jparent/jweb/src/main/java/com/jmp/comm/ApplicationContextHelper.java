@@ -4,6 +4,9 @@ import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
+/**
+ * spring直接用applicationContext生成spring bean的内容工具类
+ */
 //@Component("applicationContextHelper")
 public class ApplicationContextHelper implements ApplicationContextAware {
 

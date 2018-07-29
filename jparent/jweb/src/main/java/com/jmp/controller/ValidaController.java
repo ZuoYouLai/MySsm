@@ -3,6 +3,7 @@ package com.jmp.controller;
 import com.jmp.comm.Utils.JsonUtil;
 import com.jmp.jpojo.ValidaTestBean;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,6 +30,12 @@ public class ValidaController {
     /**
      *
      */
-
+    @RequestMapping(value = {"/reqStr"})
+    public String reqStr(@RequestBody String string){
+        log.info("valid bean data : {}", string);
+        ValidaTestBean validaTestBean = JsonUtil.json2Java(string,ValidaTestBean.class);
+        log.info("java bean : ",JsonUtil.toJson(validaTestBean));
+        return "ok";
+    }
 }
 

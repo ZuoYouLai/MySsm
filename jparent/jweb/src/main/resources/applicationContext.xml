@@ -13,7 +13,15 @@
          加载db.properties文件中的内容，db.properties文件中key命名要有一定的特殊规则
          对mysql,redis配置文件进行加载
     -->
-    <context:property-placeholder location="classpath:db.properties" />
+    <bean id="propertyConfig"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:db.properties</value>
+                <value>classpath:env.properties</value>
+            </list>
+        </property>
+    </bean>
     <import resource="classpath:mybatis/mybatis-datasource.xml"/>
 
     <context:annotation-config/>

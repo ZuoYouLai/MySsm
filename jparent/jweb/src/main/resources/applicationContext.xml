@@ -46,7 +46,8 @@
                      pointcut="execution(* com.jmp.service.*.*(..))" />
     </aop:config>
 
-    <context:component-scan base-package="com.jmp"></context:component-scan>
+    <context:component-scan base-package="com.jmp.service"/>
+
 
     <!--ApplicationContextHelper工具类的内容-->
     <bean id="applicationContextHelper" class="com.jmp.comm.ApplicationContextHelper" lazy-init="false"/>

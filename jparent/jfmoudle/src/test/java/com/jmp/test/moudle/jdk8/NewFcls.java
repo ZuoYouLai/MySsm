@@ -1,5 +1,6 @@
 package com.jmp.test.moudle.jdk8;
 
+import com.jmp.comm.Utils.JsonData;
 import com.jmp.comm.Utils.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -8,6 +9,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * 新功能内容
@@ -74,5 +77,18 @@ public class NewFcls {
             return o1.length() - o2.length();
         });
         System.err.println(JsonUtil.toJson(listT));
+    }
+
+
+    /**
+     * 初始化集合对象内容
+     */
+    @Test
+    public void testInitCollections() {
+        List<JsonData> list = Stream.of(
+                JsonData.success(1,"info"),
+                JsonData.success(2,"error")
+        ).collect(Collectors.toList());
+        System.err.println(JsonUtil.toJson(list));
     }
 }

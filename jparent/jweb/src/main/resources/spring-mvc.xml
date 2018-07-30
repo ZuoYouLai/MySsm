@@ -10,6 +10,7 @@
 
     <!--异常统一机制类-->
     <bean class="com.jmp.comm.WebExceptionResolver"/>
+    <bean class="com.jmp.aspect.WebRequestAroundAdvice"/>
 
     <!-- 配置注解驱动 -->
     <mvc:annotation-driven />
@@ -21,6 +22,8 @@
     </bean>
     <!-- 配置包扫描器，扫描@Controller注解的类 -->
     <context:component-scan base-package="com.jmp.controller"/>
+    <context:component-scan base-package="com.jmp.aspect"/>
+
     <!-- 配置资源映射 -->
     <mvc:resources location="/css/" mapping="/css/**"/>
     <mvc:resources location="/js/" mapping="/js/**"/>

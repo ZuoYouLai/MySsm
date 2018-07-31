@@ -43,32 +43,32 @@ public class WebRequestAroundAdvice {
     }
 
 
-//   /**
-//   * 环绕通知：目标方法执行前后分别执行一些代码，发生异常的时候执行另外一些代码
-//   * @return
-//   */
-//  @Around(value="arroundLog()")
-//  public Object aroundMethod(ProceedingJoinPoint jp){
-//      RequestHolder.init();
-//      RequestHolder.add("around : ");
-//      String methodName = jp.getSignature().getName();
-//      Object result = null;
-//      try {
-//          System.out.println("【环绕通知中的--->前置通知】：the method 【" + methodName + "】 begins with " + Arrays.asList(jp.getArgs()));
-//          //执行目标方法
-//          result = jp.proceed();
-//          System.out.println("【环绕通知中的--->返回通知】：the method 【" + methodName + "】 ends with " + result);
-//          List list = RequestHolder.get();
-//          Long endTime = System.currentTimeMillis();
-//          log.info("content : {}  , one request time spend : {}s", JsonUtil.toJson(list),(endTime - RequestHolder.getTime()));
-//      } catch (Throwable e) {
-//          System.out.println("【环绕通知中的--->异常通知】：the method 【" + methodName + "】 occurs exception " + e);
-//      }finally {
-//          RequestHolder.remove();
-//      }
-//      System.out.println("【环绕通知中的--->后置通知】：-----------------end.----------------------");
-//      return result;
-//  }
+   /**
+   * 环绕通知：目标方法执行前后分别执行一些代码，发生异常的时候执行另外一些代码
+   * @return
+   */
+  @Around(value="arroundLog()")
+  public Object aroundMethod(ProceedingJoinPoint jp){
+      RequestHolder.init();
+      RequestHolder.add("around : ");
+      String methodName = jp.getSignature().getName();
+      Object result = null;
+      try {
+          System.out.println("【环绕通知中的--->前置通知】：the method 【" + methodName + "】 begins with " + Arrays.asList(jp.getArgs()));
+          //执行目标方法
+          result = jp.proceed();
+          System.out.println("【环绕通知中的--->返回通知】：the method 【" + methodName + "】 ends with " + result);
+          List list = RequestHolder.get();
+          Long endTime = System.currentTimeMillis();
+          log.info("content : {}  , one request time spend : {}s", JsonUtil.toJson(list),(endTime - RequestHolder.getTime()));
+      } catch (Throwable e) {
+          System.out.println("【环绕通知中的--->异常通知】：the method 【" + methodName + "】 occurs exception " + e);
+      }finally {
+          RequestHolder.remove();
+      }
+      System.out.println("【环绕通知中的--->后置通知】：-----------------end.----------------------");
+      return result;
+  }
 
 
 
@@ -98,21 +98,6 @@ public class WebRequestAroundAdvice {
 
     }
 
-
-    /**
-     * 返回通知：目标方法正常执行完毕时执行以下代码
-     * 后置通知内容
-     * @param ret
-     */
-    @AfterReturning(returning = "ret",pointcut = "webLog()")
-    public void webAfter(Object ret){
-        List list = RequestHolder.get();
-        Long endTime = System.currentTimeMillis();
-        log.info("content : {}  , one request time spend : {}s", JsonUtil.toJson(list),(endTime - RequestHolder.getTime()));
-        //返回记录的内容
-        log.info("webAfter {}",ret);
-
-    }
 
 
     /**

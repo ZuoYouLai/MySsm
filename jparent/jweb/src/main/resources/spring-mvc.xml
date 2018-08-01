@@ -10,6 +10,8 @@
 
     <!--异常统一机制类-->
     <bean class="com.jmp.comm.WebExceptionResolver"/>
+
+    <!-- aop 作用于controller-->
     <aop:aspectj-autoproxy proxy-target-class="true"/>
 
 

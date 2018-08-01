@@ -2,3 +2,29 @@
 
 线程的知识点:
     1.DeadLock  死锁
+    2.synchronized :
+                    synchronized 关键字,可以作用于class method 代码块
+                    特性:原子性
+    3.CopyOnWriteArrayList :
+                    CopyOnWriteArrayList 多线程容器 适合的场景:读多写少的操作
+                    原理:在高并发的时候，当某个线程写操作时，则内存生成一个新的一模一样的空间，进行写操作（这里有加锁的操作 ReentrantLock）
+                         在写过程中，读线程则依然访问原来的容器，无阻塞，当线程写完后则将原来容器的引用指向新的容器，原来容器则不再使用，被销毁
+                         适合的场景:读多写少的操作
+    4.Queue :
+             队列,FIFO数据结构
+             参考: https://www.cnblogs.com/lemon-flm/p/7877898.html
+             分类:
+                非阻塞: ConcurrentLinkedQueue
+                阻塞:   ArrayBlockQueue  : 容量是有界的,还可以设置公平参数的内容
+                        LinkedBlockingQueue : 没有上限的阻塞容器
+                        PriorityBlockQueue : 优先级队列
+                        SynchronousQueue  :  缓存队列
+             方法:
+                 add        增加一个元索                     如果队列已满，则抛出一个IIIegaISlabEepeplian异常
+             　　remove   移除并返回队列头部的元素    如果队列为空，则抛出一个NoSuchElementException异常
+             　　element  返回队列头部的元素             如果队列为空，则抛出一个NoSuchElementException异常
+             　　offer       添加一个元素并返回true       如果队列已满，则返回false
+             　　poll         移除并返问队列头部的元素    如果队列为空，则返回null
+             　　peek       返回队列头部的元素             如果队列为空，则返回null
+             　　put         添加一个元素                      如果队列满，则阻塞
+             　　take        移除并返回队列头部的元素     如果队列为空，则阻塞

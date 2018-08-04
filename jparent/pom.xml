@@ -58,6 +58,7 @@
         <glassfish.version>3.0.1-b0</glassfish.version>
         <javax.el.version>2.2.4</javax.el.version>
         <joda.version>2.10</joda.version>
+        <guava.version>25.1-jre</guava.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -313,6 +314,14 @@
                 <artifactId>joda-time</artifactId>
                 <version>${joda.version}</version>
             </dependency>
+
+            <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+
 
 
             <!-- https://mvnrepository.com/artifact/org.apache.tomcat.maven/tomcat8-maven-plugin -->

@@ -10,8 +10,16 @@
 
 
 
-    <!-- 加载定时任务 -->
-    <task:annotation-driven/>
+    <!-- 加载定时任务 :
+                        需要配置多线程才能不会让任务与任务之间受到影响
+                        默认的配置的单线程  需要配置线程池
+    -->
+    <task:executor id="executor" pool-size="5" />
+    <task:scheduler id="scheduler" pool-size="10" />
+    <task:annotation-driven scheduler="scheduler" executor="executor"/>
+
+
+    <!--扫描相应的包内容-->
     <context:component-scan base-package="com.jmp.quarz"/>
 
     <!--
@@ -28,6 +36,7 @@
         </property>
     </bean>
     <import resource="classpath:mybatis/mybatis-datasource.xml"/>
+    <import resource="classpath:quartz.xml"/>
 
     <context:annotation-config/>
     <!-- 通知 -->
@@ -56,7 +65,6 @@
 
     <!--ApplicationContextHelper工具类的内容-->
     <bean id="applicationContextHelper" class="com.jmp.comm.ApplicationContextHelper" lazy-init="false"/>
-
     <!--Spring 集成线程池，不允许自己开启线程-->
     <bean id="threadPoolTaskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
         <!-- 线程池维护线程的最少数量 -->

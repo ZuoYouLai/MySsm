@@ -49,5 +49,7 @@
                     执行的操作类似前端的ajax请求类似 : 代码的实现( http://www.cnblogs.com/jianzh5/p/6121120.htm )
                     [jdk 已实现future代码,直接使用即可]
                     (jdk 实现方式 : http://www.cnblogs.com/jianzh5/p/6657905.html)
-
+               master-worker :
+                    Master-Worker是常用的并行计算模式。它的核心思想是系统由两类进程协作工作：Master进程和Worker进程。Master负责接收和分配任务，Worker负责处理子任务。
+                    当各个Worker子进程处理完成后，会将结果返回给Master，由Master作归纳总结。其好处就是能将一个大任务分解成若干个小任务，并行执行，从而提高系统的吞吐量。
 

@@ -35,7 +35,7 @@
             </list>
         </property>
     </bean>
-    <import resource="classpath:mybatis/mybatis-datasource.xml"/>
+    <import resource="classpath:spring/mybatis-applicationContext.xml"/>
     <import resource="classpath:quartz.xml"/>
 
     <context:annotation-config/>

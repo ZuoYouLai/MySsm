@@ -59,7 +59,7 @@
         <javax.el.version>2.2.4</javax.el.version>
         <joda.version>2.10</joda.version>
         <guava.version>25.1-jre</guava.version>
-        <redis.version>2.1.0</redis.version>
+        <redis.version>2.9.0</redis.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -323,11 +323,19 @@
                 <version>${guava.version}</version>
             </dependency>
 
+
+            <!---  redis  -->
             <dependency>
                 <groupId>redis.clients</groupId>
                 <artifactId>jedis</artifactId>
                 <version>${redis.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-redis</artifactId>
+                <version>1.7.0.RELEASE</version>
+            </dependency>
+
 
 
 

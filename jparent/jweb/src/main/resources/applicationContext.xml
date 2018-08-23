@@ -37,6 +37,7 @@
     </bean>
     <import resource="classpath:spring/mybatis-applicationContext.xml"/>
     <import resource="classpath:quartz.xml"/>
+    <import resource="classpath:spring/redis-applicationContext.xml"/>
 
     <context:annotation-config/>
     <!-- 通知 -->

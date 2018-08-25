@@ -18,6 +18,21 @@
 
 2.web.xml 配置过滤器  (spring resful 过滤器的设置)
 
+        A.文件上传解析器的bean名称  作用于filter加载才有效  multipartResolver
+        <!-- 配置文件上传解析器 -->
+        <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+                 <!-- 指定所上传文件的总大小不能超过20M。注意maxUploadSize属性的限制不是针对单个文件，而是所有文件的容量之和 -->
+                 <property name="maxUploadSize" value="20000000"/>
+                 <property name="defaultEncoding" value="utf-8"></property>
+        </bean>
+
+        B.引入的root-context.xml文件作用于filter内容
+        <context-param>
+        		<param-name>contextConfigLocation</param-name>
+        		<param-value>classpath:spring/root-context.xml</param-value>
+        </context-param>
+
+        C.filter作用于multipartResolver名称
         <filter>
     		<filter-name>MultipartFilter</filter-name>
     		<filter-class>org.springframework.web.multipart.support.MultipartFilter</filter-class>

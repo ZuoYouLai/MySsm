@@ -73,3 +73,8 @@
 
         HiddenHttpMethodFilter的父类是OncePerRequestFilter，它继承了父类的doFilterInternal方法，工作原理是将jsp页面的form表单的method属性值在doFilterInternal方法中转化为标准的Http方法，即GET,、POST、 HEAD、OPTIONS、PUT、DELETE、TRACE，
         然后到Controller中找到对应的方法。例如，在使用注解时我们可能会在Controller中用于@RequestMapping(value = "list", method = RequestMethod.PUT)，所以如果你的表单中使用的是<form method="put">，那么这个表单会被提交到标了Method="PUT"的方法中。
+        
+        
+        
+        
+        

@@ -4,3 +4,14 @@
 mybatis :
         一对一 一对多 多对多
        条件可以引入静态变量跟静态方法
+
+
+
+
+数据表的初始化：
+CREATE TABLE `user` (
+   `id` bigint(20) NOT NULL AUTO_INCREMENT,
+   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+   `password` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+   PRIMARY KEY (`id`)
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci

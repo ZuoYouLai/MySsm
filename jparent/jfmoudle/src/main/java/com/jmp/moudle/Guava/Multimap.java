@@ -4,6 +4,8 @@ package com.jmp.moudle.Guava;
         import com.google.common.collect.ArrayListMultimap;
         import com.google.common.collect.ListMultimap;
 
+        import java.util.Collection;
+        import java.util.List;
         import java.util.Map;
 
 /**
@@ -47,6 +49,13 @@ public class Multimap {
 
         //不同键的个数
         System.err.println(listMultimap.keySet().size());
+
+        Map<String, Collection<String>> lmap = listMultimap.asMap();
+
+        for (Map.Entry<String, Collection<String>> entry : lmap.entrySet()) {
+            System.err.println(entry.getKey());
+            System.err.println(entry.getValue().size());
+        }
 
     }
 }

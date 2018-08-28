@@ -22,6 +22,14 @@ public class ObjectTest {
         boolean f7=Objects.equals(new Integer(5), new Integer(5));
         System.err.println("new Integer(5) == new Integer(5) " + f7);
         System.err.println("new Integer(5) == new Integer(5) "+(new Integer(5) == new Integer(5)));
+
+
+
+
+
+
+        boolean f71=Objects.equals(null, 5);
+        System.err.println("null == 5 " + f71);
     }
 
 

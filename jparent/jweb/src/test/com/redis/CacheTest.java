@@ -1,6 +1,8 @@
 package com.redis;
 
+import com.jmp.comm.Enum.CacheEnum;
 import com.jmp.comm.Utils.JsonUtil;
+import com.jmp.comm.Utils.ToolUtils;
 import com.jmp.redis.JedisService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,9 +22,15 @@ public class CacheTest {
     @Resource
     private JedisService jedisService;
 
-    /**
-     *
-     */
+
+    @Test
+    public void test000() {
+        String key = ToolUtils.getKey(CacheEnum.SIMPLE.getKey(), 1);
+        jedisService.del(key);
+    }
+
+
+
     @Test
     public void test001() throws Exception {
         List<String> list = new ArrayList<String>();
@@ -38,4 +46,17 @@ public class CacheTest {
 
         System.out.print(jedisService.get("map"));
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

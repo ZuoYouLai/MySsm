@@ -53,3 +53,18 @@
                     Master-Worker是常用的并行计算模式。它的核心思想是系统由两类进程协作工作：Master进程和Worker进程。Master负责接收和分配任务，Worker负责处理子任务。
                     当各个Worker子进程处理完成后，会将结果返回给Master，由Master作归纳总结。其好处就是能将一个大任务分解成若干个小任务，并行执行，从而提高系统的吞吐量。
 
+
+     6.ThreadPool线程池的execute 与 submit区别:
+        (文章的链接：https://blog.csdn.net/abountwinter/article/details/78123422  https://blog.csdn.net/hayre/article/details/53314599)
+        1.如果提交的任务不需要一个结果的话直接用execute()会提升很多性能。
+        2.就是相当于说如果你传的任务是需要结果的，那你就使用你的类去继承Callable接口，然后告诉submit方法就行了，如果你只需要一个特定的结果，
+          就把那个特定的结果告诉submit方法然后把你想要的特定结果也告诉他，它只是帮你完成以前使用Future模式的时候你自己需要做的那些步骤而已，如果你不需要一个结果，
+          那么就老老实实使用execute，如果你需要的是一个空结果，那么submit(yourRunnable)与submit(yourRunnable,null)是等价的！
+
+        1.对返回值的处理不同
+        execute方法不关心返回值。
+        submit方法有返回值，Future。
+        2.对异常的处理不同
+        excute方法会抛出异常。
+        sumbit方法不会抛出异常。除非你调用Future.get()。
+

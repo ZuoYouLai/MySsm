@@ -2,6 +2,7 @@
     A.在controller的请求头部的注解写上 produces = "text/plain;charset=utf-8" :
          @RequestMapping(value = {"/xxxMethod"},produces = "text/plain;charset=utf-8")
     B.在spring-mvc配置:
+       
         <!-- 处理请求返回json字符串的中文乱码问题 -->
         <mvc:annotation-driven>
             <mvc:message-converters>
@@ -14,6 +15,9 @@
                 </bean>
             </mvc:message-converters>
         </mvc:annotation-driven>
+
+
+
 
 
 2.web.xml 配置过滤器  (spring resful 过滤器的设置)

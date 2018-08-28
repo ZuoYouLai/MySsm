@@ -90,7 +90,16 @@
       
       
       
-5.本地缓存：guava cache      
+5.本地缓存：guava cache
+
+
+
+
+
+
+6.登录一般校验方法：
+    http://blog.jobbole.com/61872/
+    加盐密码哈希：如何正确使用（http://blog.jobbole.com/61872/）      
       
       
       

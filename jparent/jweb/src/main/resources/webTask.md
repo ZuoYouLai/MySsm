@@ -76,7 +76,25 @@
         
         
 3.微信开发:
-       1.https://natapp.cn/ 内网映射        
+       1.https://natapp.cn/ 内网映射     
+       
+       
+       
+       
+       
+4.标准会话管理:
+      1.jwt   2.oauth2          
+      
+      
+      
+      
+      
+      
+5.本地缓存：guava cache      
+      
+      
+      
+      
         
         
         

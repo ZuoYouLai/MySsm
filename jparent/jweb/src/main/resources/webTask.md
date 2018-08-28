@@ -75,6 +75,10 @@
         然后到Controller中找到对应的方法。例如，在使用注解时我们可能会在Controller中用于@RequestMapping(value = "list", method = RequestMethod.PUT)，所以如果你的表单中使用的是<form method="put">，那么这个表单会被提交到标了Method="PUT"的方法中。
         
         
+3.微信开发:
+       1.https://natapp.cn/ 内网映射        
+        
+        
         
         
         

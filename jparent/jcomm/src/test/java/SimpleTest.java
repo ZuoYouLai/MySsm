@@ -3,6 +3,7 @@ import org.junit.Test;
 
 import java.util.Random;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 public class SimpleTest {
 
@@ -33,6 +34,14 @@ public class SimpleTest {
           }
 
 
+      }
+
+
+
+
+      @Test
+      public void test003() {
+          System.err.println(TimeUnit.DAYS.toSeconds(1));
       }
 
 

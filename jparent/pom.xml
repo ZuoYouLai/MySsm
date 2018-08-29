@@ -61,6 +61,7 @@
         <joda.version>2.10</joda.version>
         <guava.version>25.1-jre</guava.version>
         <redis.version>2.9.0</redis.version>
+        <fastjson.version>1.2.30</fastjson.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -353,6 +354,12 @@
             </dependency>
 
 
+            <!-- JSON; -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
 
 
             <!-- https://mvnrepository.com/artifact/org.apache.tomcat.maven/tomcat8-maven-plugin -->

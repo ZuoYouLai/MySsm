@@ -1,5 +1,6 @@
 package com.jmp.biz.impl;
 
+import com.jmp.biz.CacheLoadable;
 import com.jmp.biz.UserCacheService;
 import com.jmp.comm.Enum.CacheEnum;
 import com.jmp.comm.Utils.JsonUtil;
@@ -22,7 +23,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  */
 @Slf4j
 @Service("userCacheService")
-public class UserCacheServiceImpl implements UserCacheService {
+public class UserCacheServiceImpl implements UserCacheService,CacheLoadable<User> {
 
     @Autowired
     private UserService userService;
@@ -122,8 +123,9 @@ public class UserCacheServiceImpl implements UserCacheService {
 
 
 
-
-
-
-
+    @Override
+    public User load(Integer id) {
+        User user = userMapper.selectByPrimaryKey(id);
+        return user;
+    }
 }

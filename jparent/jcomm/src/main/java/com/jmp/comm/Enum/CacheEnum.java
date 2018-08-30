@@ -8,7 +8,8 @@ public enum CacheEnum {
 
     SIMPLE("simple_user", "simple redis cache"),
     SYNLOCK("syn_user", "synchronized redis cache"),
-    LOCK("lock_user", "lock redis cache"),;
+    LOCK("lock_user", "lock redis cache"),
+    TEMPALTELOCK("template_user", "template redis cache"),;
 
     private String key;
     private String desc;

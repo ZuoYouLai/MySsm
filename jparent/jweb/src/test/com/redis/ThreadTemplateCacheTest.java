@@ -1,9 +1,14 @@
 package com.redis;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
+import com.jmp.biz.CacheLoadable;
+import com.jmp.biz.RedisCacheServer;
 import com.jmp.biz.UserCacheService;
 import com.jmp.comm.Enum.CacheEnum;
 import com.jmp.comm.Utils.ToolUtils;
 import com.jmp.redis.JedisService;
+import com.jmp.sql.domain.User;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,7 +29,7 @@ import java.util.concurrent.Executors;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:/applicationContext.xml"})
 @Slf4j
-public class ThreadModelCacheTest {
+public class ThreadTemplateCacheTest {
 
 
     @Autowired
@@ -42,9 +47,16 @@ public class ThreadModelCacheTest {
     @Before
     public void before() {
         log.info("delete cache ....");
-        String key = ToolUtils.getKey(CacheEnum.SYNLOCK.getKey(), USER_ID);
+        String key = ToolUtils.getKey(CacheEnum.TEMPALTELOCK.getKey(), USER_ID);
         jedisService.del(key);
         log.info("delete cache ....   end");
+    }
+
+
+    @Test
+    public void simple() {
+        User user = userCacheService.templateUserCache(USER_ID);
+        System.err.println(JSON.toJSONString(user));
     }
 
 
@@ -77,7 +89,7 @@ public class ThreadModelCacheTest {
     private class SelectTask implements Runnable {
         @Override
         public void run() {
-            userCacheService.lockSynUserCache(USER_ID);
+            userCacheService.templateUserCache(USER_ID);
             countDownLatch.countDown();
         }
     }

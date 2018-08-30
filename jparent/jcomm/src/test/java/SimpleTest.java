@@ -1,6 +1,7 @@
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
+import java.util.Objects;
 import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
@@ -41,7 +42,10 @@ public class SimpleTest {
 
       @Test
       public void test003() {
-          System.err.println(TimeUnit.DAYS.toSeconds(1));
+          System.err.println(TimeUnit.DAYS.toSeconds(0));
+          System.err.println(TimeUnit.SECONDS.toSeconds(0));
+          System.err.println(Objects.equals(1L, new Long(1)));
+          System.err.println(Objects.equals(1, new Long(1)));
       }
 
 

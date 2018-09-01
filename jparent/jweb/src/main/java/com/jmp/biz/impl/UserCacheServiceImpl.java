@@ -1,5 +1,8 @@
 package com.jmp.biz.impl;
 
+import com.alibaba.fastjson.TypeReference;
+import com.jmp.biz.CacheLoadable;
+import com.jmp.biz.RedisCacheServer;
 import com.jmp.biz.UserCacheService;
 import com.jmp.comm.Enum.CacheEnum;
 import com.jmp.comm.Utils.JsonUtil;
@@ -30,6 +33,8 @@ public class UserCacheServiceImpl implements UserCacheService {
     private UserMapper userMapper;
     @Autowired
     private JedisService jedisService;
+    @Autowired
+    private RedisCacheServer redisCacheServer;
 
     private ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock();
 
@@ -69,6 +74,20 @@ public class UserCacheServiceImpl implements UserCacheService {
             readWriteLock.readLock().unlock();
         }
         return value;
+    }
+
+
+
+    @Override
+    public User templateUserCache(Integer userId) {
+        String key = ToolUtils.getKey(CacheEnum.TEMPALTELOCK.getKey(), userId);
+        return redisCacheServer.queryByCache(key, 0L, new TypeReference<User>() {
+        }, new CacheLoadable<User>() {
+            @Override
+            public User load(Integer id) {
+                return userMapper.selectByPrimaryKey(userId);
+            }
+        }, userId);
     }
 
 
@@ -119,11 +138,6 @@ public class UserCacheServiceImpl implements UserCacheService {
             return value;
         }
     }
-
-
-
-
-
 
 
 }

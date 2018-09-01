@@ -79,6 +79,14 @@
        1.https://natapp.cn/ 内网映射     
        
        
+       2.站点的微信登录： 查看的文档是微信开放平台 (appId  secret不一样)
+       
+       
+       
+       3.（微信公众平台）微信模板信息提醒
+             
+       
+       
        
        
        
@@ -103,7 +111,20 @@
       
       
       
-      
+7.websocket      
+        1.前端写客户端的js代码
+        2.后端要写websocket代码进行message的传输
+        
+        
+8.缓存的注解：cacheable cacheConfig cacheput  +  序列化
+
+
+9.项目部署
+    tomcat war
+    java -jar 
+    
+
+        
         
         
         

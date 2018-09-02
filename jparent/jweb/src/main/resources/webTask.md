@@ -121,7 +121,18 @@
 
 9.项目部署
     tomcat war
-    java -jar 
+    java -jar 【linux部署】
+    
+  
+10.centos service    
+
+
+
+11.容器编排打包
+
+
+
+    
     
 
         

@@ -18,3 +18,49 @@
      5.扩展性不够
 
 
+注册中心：
+       客户端注册
+       服务端注册
+
+
+
+spring cloud 与 SOA 相差的是：消息总线
+
+spring cloud：
+    1.Eureka 注册服务：类似zookeeper一样，注册相应的服务内容
+                       记录各个服务地址与端口信息，达到注册效果
+
+    2.微服务中的服务与服务之间的调用是Http方式进行调用，与RPC方式不一样
+
+    3.负载均衡器 ：Ribbion 分为：提供的策略：轮询Round Robin、随机Random、ResponseTime加权
+
+    4.Feign使用 ： 底层也是一个http的请求方式来的，写法很不一样
+                   1.在client端写一个接口加注解的方式进行调用
+                   For Example：
+
+                      @FeignClient(name = "${serviceName}")
+                      public interface HotService
+                      {
+                          @RequestMapping(value = "/term/hot", method = RequestMethod.POST)
+                          public Map<String, Object> hot(MultiValueMap params);
+                      }
+                      注意到上面提到的consumes参数去掉了，用了MultiValueMap就没必要再设置了
+                      相应的，调用方式也要改变：
+                      LinkedMultiValueMap<String, Object> multiValueMap = new LinkedMultiValueMap<>();
+                      multiValueMap.add("terms", terms);
+                      Map<String, Object> result = hotService.hot(multiValueMap);
+
+                      作者：Carlyle1993
+                      链接：https://www.jianshu.com/p/b63713879953
+                      來源：简书
+                      简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。
+
+       5.多个moudle开发
+
+       6.同步与异步 ： 消息队列
+
+       7.微服务与容器技术 --- 》 docker 与 devops 【例如炒菜跟盐一样】
+       
+
+
+

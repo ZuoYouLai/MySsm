@@ -1,5 +1,6 @@
-package com.jmp.redis;
+package com.jmp.redis.impl;
 
+import com.jmp.redis.JedisConnectionFactory;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

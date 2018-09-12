@@ -1,0 +1,7 @@
+
+简述:
+    disruptor不过多介绍了,描述下当前的业务场景,两个应用A,B,应用 A 向应用 B 传递数据 .
+数据传送比较快,如果用http直接push数据然后入库,效率不高.有可能导致A应用比较大的压力. 使用mq 太重量级,所以选择了disruptor. 也可以使用Reactor
+
+简单的demo：
+        https://segmentfault.com/a/1190000014469173

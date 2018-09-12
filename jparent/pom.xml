@@ -62,6 +62,9 @@
         <guava.version>25.1-jre</guava.version>
         <redis.version>2.9.0</redis.version>
         <fastjson.version>1.2.30</fastjson.version>
+        <disruptor.version>3.4.2</disruptor.version>
+        <spring.redis.data.version>1.7.0.RELEASE</spring.redis.data.version>
+        <sun.mail.verison>1.6.0</sun.mail.verison>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -343,14 +346,14 @@
             <dependency>
                 <groupId>org.springframework.data</groupId>
                 <artifactId>spring-data-redis</artifactId>
-                <version>1.7.0.RELEASE</version>
+                <version>${spring.redis.data.version}</version>
             </dependency>
 
 
             <dependency>
                 <groupId>com.sun.mail</groupId>
                 <artifactId>javax.mail</artifactId>
-                <version>1.6.0</version>
+                <version>${sun.mail.verison}</version>
             </dependency>
 
 
@@ -359,6 +362,13 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>${fastjson.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>com.lmax</groupId>
+                <artifactId>disruptor</artifactId>
+                <version>${disruptor.version}</version>
             </dependency>
 
 

@@ -383,7 +383,6 @@
 
         </dependencies>
     </dependencyManagement>
-<!--
     <pluginRepositories>
         <pluginRepository>
             <id>alfresco-public</id>
@@ -402,7 +401,6 @@
             <url>http://beardedgeeks.googlecode.com/svn/repository/releases</url>
         </pluginRepository>
     </pluginRepositories>
--->
 
     <build>
         <finalName>${project.artifactId}</finalName>

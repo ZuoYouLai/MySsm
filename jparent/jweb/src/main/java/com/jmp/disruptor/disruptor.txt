@@ -1,4 +1,70 @@
 
+从功能上来看，Disruptor 是实现了“队列”的功能，而且是一个有界队列。那么它的应用场景自然就是“生产者-消费者”模型的应用场合了。
+可以拿 JDK 的 BlockingQueue 做一个简单对比，以便更好地认识 Disruptor 是什么。
+我们知道 BlockingQueue 是一个 FIFO 队列，生产者(Producer)往队列里发布(publish)一项事件(或称之为“消息”也可以)时，消费者(Consumer)能获得通知；如果没有事件时，消费者被堵塞，直到生产者发布了新的事件。
+这些都是 Disruptor 能做到的，与之不同的是，Disruptor 能做更多：
+
+同一个“事件”可以有多个消费者，消费者之间既可以并行处理，也可以相互依赖形成处理的先后次序(形成一个依赖图)；
+预分配用于存储事件内容的内存空间；
+针对极高的性能目标而实现的极度优化和无锁的设计；
+以上虽然简单地描述了 Disruptor 是什么，但对于它"能做什么"，还不是那么明白。简而言之，当你需要在两个独立的处理过程之间交换数据时，就可以使用 Disruptor 。当然使用队列也可以，只不过 Disruptor 的性能更好。
+
+
+Disruptor 相对于传统方式的优点：
+
+无锁，没有竞争
+所有访问者都记录自己的序号的实现方式，允许多个生产者与多个消费者共享相同的数据结构
+缓存行填充，解决伪共享，提高cache命中率
+环形数组RingBuffer，避免GC开销
+
+
+
+
+
+Ring Buffer：
+    Ring Buffer通常被认为是Disruptor的主要方面，但是从3.0开始Ring Buffer只负责数据（Events）的存储和更新。对于一些高级用例，完全可以由用户自己替换。
+Sequence：
+    Disruptor利用Sequences来标志一个特定的组件，每一个消费者（EventProcessor）都维护一个Sequence。Disruptor中大多数的并发代码都是依赖于这些Sequence的移动，生产者对RingBuffer的互斥访问，生产者与消费者之间的协调以及消费者之间的协调，都是通过Sequence实现。几乎每一个重要的组件都包含Sequence。由于需要在线程间共享，所以Sequence是引用传递，并且是线程安全的；再次，Sequence支持CAS操作；最后，为了提高效率，Sequence通过padding来避免伪共享。
+Sequencer：
+    Sequencer是Disruptor的真正的核心，此接口有两个实现类 SingleProducerSequencer、MultiProducerSequencer ，它们定义在生产者和消费者之间快速、正确地传递数据的并发算法。
+Sequence Barriers：
+    Sequence Barriers是由Sequencer创建的，包含Sequencer主发布的Sequence的引用和任何一个依赖消费者的Sequences。它包含了判断是否有任何事件可供消费者处理的逻辑。
+Wait Strategy：
+    等待策略决定了消费者会等待event被生产者放入Disruptor。Disruptor提供了多个等待策略的实现。
+     1. BusySpinWaitStrategy：自旋等待，类似Linux Kernel使用的自旋锁。低延迟但同时对CPU资源的占用也多。
+     2. BlockingWaitStrategy ：使用锁和条件变量。CPU资源的占用少，延迟大。
+     3. SleepingWaitStrategy ：在多次循环尝试不成功后，选择让出CPU，等待下次调度，多次调度后仍不成功，尝试前睡眠一个纳秒级别的时间再尝试。这种策略平衡了延迟和CPU资源占用，但延迟不均匀。
+     5. YieldingWaitStrategy ：在多次循环尝试不成功后，选择让出CPU，等待下次调度。平衡了延迟和CPU资源占用，但延迟比较均匀。
+     6. PhasedBackoffWaitStrategy ：上面多种策略的综合，CPU资源的占用少，延迟大。
+Event：
+    数据从生产者传递给消费者的数据单元。
+EventProcessor：
+    处理Disruptor中的events的主事件循环，拥有消费者Sequence的所有权。
+    其中BatchEventProcessor即实现了有效率的event loop，而且可以回调给实现了EventHandler接口的类。
+EventHandler：
+    Disruptor 定义的事件处理接口，由用户实现，用于处理事件，是Consumer的真正实现。
+Producer：
+    即生产者，只是泛指调用 Disruptor 发布事件的用户代码，Disruptor 没有定义特定接口或类型。
+
+
+
+
+Disruptor论文中讲述了一个实验：
+
+这个测试程序调用了一个函数，该函数会对一个64位的计数器循环自增5亿次。
+机器环境：2.4G 6核
+运算： 64位的计数器累加5亿次
+Method	Time (ms)
+Single thread	300
+Single thread with CAS	5,700
+Single thread with lock	10,000
+Single thread with volatile write	4,700
+Two threads with CAS	30,000
+Two threads with lock	224,000
+
+
+
+
 简述:
     disruptor不过多介绍了,描述下当前的业务场景,两个应用A,B,应用 A 向应用 B 传递数据 .
 数据传送比较快,如果用http直接push数据然后入库,效率不高.有可能导致A应用比较大的压力. 使用mq 太重量级,所以选择了disruptor. 也可以使用Reactor

@@ -38,6 +38,8 @@
     <import resource="classpath:spring/mybatis-applicationContext.xml"/>
     <import resource="classpath:quartz.xml"/>
     <import resource="classpath:spring/redis-applicationContext.xml"/>
+    <import resource="classpath:spring/disruptor.xml"/>
+
 
     <context:annotation-config/>
     <!-- 通知 -->
@@ -63,6 +65,7 @@
 
     <context:component-scan base-package="com.jmp.service"/>
     <context:component-scan base-package="com.jmp.biz"/>
+    <context:component-scan base-package="com.jmp.disruptor"/>
 
 
     <!--ApplicationContextHelper工具类的内容-->
@@ -87,5 +90,7 @@
     </bean>
 
     <bean id="myThreadPoolExecutor" class="com.jmp.comm.MyThreadPoolExecutor" />
+
+
 
 </beans>

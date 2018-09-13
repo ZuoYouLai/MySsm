@@ -33,7 +33,7 @@ public class MySpringTaskQuarzJobs {
      *      不一样的线程进行操作的
      *      注解式的任务,在时间延迟的时候，大于相间隔的时间进行操作的，也会执行完再执行下一个操作
      */
-    @Scheduled(cron = "0/2 * * * * ? ")
+//    @Scheduled(cron = "0/2 * * * * ? ")
     public void run(){
         try {
             Thread.sleep(5000);
@@ -49,7 +49,7 @@ public class MySpringTaskQuarzJobs {
      * 注解式的定时任务操作:
      *     当发生异常时，任务在相应的间隔时间进行执行
      */
-    @Scheduled(cron = "0/3 * * * * ? ")
+//    @Scheduled(cron = "0/3 * * * * ? ")
     public void runError(){
         try {
             Thread.sleep(7000);
@@ -69,7 +69,7 @@ public class MySpringTaskQuarzJobs {
     /**
      * 可以调用相应的服务类内容
      */
-    @Scheduled(cron = "0/5 * * * * ? ")
+//    @Scheduled(cron = "0/5 * * * * ? ")
     public void runService(){
         log.info("--------> runService method <---------------");
         List<User> list = userService.getUserList();

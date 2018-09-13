@@ -4,8 +4,8 @@ import com.jmp.comm.Utils.JsonUtil;
 import com.jmp.jpojo.ValidaTestBean;
 import com.jmp.service.UserService;
 import com.jmp.sql.domain.User;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,11 +25,11 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/test")
+@Slf4j
 public class TestController {
 
-    private static final Logger LOG = LoggerFactory.getLogger(TestController.class);
 
-    @Resource
+    @Autowired
     UserService userService;
 
 
@@ -37,7 +37,7 @@ public class TestController {
     @RequestMapping(value = {"/list"})
     public String getListData() throws Exception{
         List<User> list = userService.getUserList();
-        LOG.info("test controller.....");
+        log.info("test controller.....");
         return JsonUtil.toJson(list);
     }
 
@@ -49,16 +49,16 @@ public class TestController {
     public String getIp(HttpServletRequest request, HttpServletResponse response) throws Exception{
         response.setContentType("text/html;charset=utf-8");
         response.setCharacterEncoding("utf-8");
-        LOG.info("path : {}",TestController.class.getResource("").toString());
-        LOG.info("path : {}",TestController.class.getResource("/").toString());
-        LOG.info("path : {}",TestController.class.getResource("").getPath());
-        LOG.info("path : {}",TestController.class.getResource("/").getPath());
+        log.info("path : {}",TestController.class.getResource("").toString());
+        log.info("path : {}",TestController.class.getResource("/").toString());
+        log.info("path : {}",TestController.class.getResource("").getPath());
+        log.info("path : {}",TestController.class.getResource("/").getPath());
         Locator locator = Locator.loadFromLocal(TestController.class.getResource("/").getPath()+"17monipdb.datx");
         LocationInfo ipInfo = locator.find("180.163.159.7");
-        LOG.info("test ip.....");
-        LOG.info("info country : {}",ipInfo.country);
-        LOG.info("info is : {}",ipInfo.isp);
-        LOG.info("info city : {}",ipInfo.city);
+        log.info("test ip.....");
+        log.info("info country : {}",ipInfo.country);
+        log.info("info is : {}",ipInfo.isp);
+        log.info("info city : {}",ipInfo.city);
         return ipInfo.toString();
     }
 
@@ -66,7 +66,7 @@ public class TestController {
 
     @RequestMapping(value = {"/valid"})
     public String testParams(@RequestBody @Valid ValidaTestBean validaTestBean){
-        LOG.info("valid bean data : {}", JsonUtil.toJson(validaTestBean));
+        log.info("valid bean data : {}", JsonUtil.toJson(validaTestBean));
         return "ok";
     }
 
@@ -76,7 +76,7 @@ public class TestController {
         Map map = new HashMap();
         map.put("name", name);
         map.put("赖", "好哒");
-        LOG.info("data :{}",JsonUtil.toJson(map));
+        log.info("data :{}",JsonUtil.toJson(map));
         return JsonUtil.toJson(map);
     }
 
@@ -90,7 +90,7 @@ public class TestController {
         Map map = new HashMap();
         map.put("name", "ni核实name");
         map.put("赖", "好哒");
-        LOG.info("data :{}",JsonUtil.toJson(map));
+        log.info("data :{}",JsonUtil.toJson(map));
         response.getWriter().write(JsonUtil.toJson(map));
         response.getWriter().flush();
     }
@@ -110,7 +110,7 @@ public class TestController {
         map.put("list", listMap);
         map.put("list2", JsonUtil.toJson(map));
         map.put("赖", "好哒");
-        LOG.info("data :{}",JsonUtil.toJson(map));
+        log.info("data :{}",JsonUtil.toJson(map));
         return JsonUtil.toJson(map);
     }
 
@@ -129,7 +129,7 @@ public class TestController {
         map.put("list", listMap);
         map.put("list2", JsonUtil.toJson(map));
         map.put("赖", "好哒");
-        LOG.info("data :{}",JsonUtil.toJson(map));
+        log.info("data :{}",JsonUtil.toJson(map));
         return JsonUtil.toJson(map);
     }
 

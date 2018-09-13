@@ -60,7 +60,14 @@ spring cloud：
        6.同步与异步 ： 消息队列
 
        7.微服务与容器技术 --- 》 docker 与 devops 【例如炒菜跟盐一样】
-       
+
+
+       8.Config Server（统一的配置中心）
+         原理：
+             config server根据指定的代码的仓库来下载对应的配置文件，进行更新指向根据config server的服务进行更新文件内容，
+             由于这里的web容器加载配置文件，内存是有相关的配置内容。需要spring cloud bus总线来进行通知，更新仓库的信息的时候
+             然后再访问对应的/refrsh/bus进行消息队列的方式进行异步更新，更新内存的配置文件，更好的是git仓库中有web Hook动态的push，进行调用这个接口（post），
+             这个接口名称对内为/refrsh/bus  对外的话则为：/monitor
 
 
 

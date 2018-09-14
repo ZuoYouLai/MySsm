@@ -70,4 +70,13 @@ spring cloud：
              这个接口名称对内为/refrsh/bus  对外的话则为：/monitor
 
 
+       9.消息队列异步操作
+          1.消息的安全的可达性 [Rabbitmq]
+          2.spring cloud Stream组件的使用，input 与 output  效果如消息队列一样
+
+
+        10.经典的微服务的扣库存的操作(非常重点)
+          1.服务间的调用，异步操作，订单与库存的操作
+
+
 

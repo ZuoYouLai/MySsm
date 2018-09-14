@@ -1,7 +1,17 @@
 package com.jmp.moudle.Guava;
 
+import com.google.common.base.MoreObjects;
+
 import java.util.Objects;
 
+/**
+ * @author samLai
+ * @date 2018/9/14 11:11
+ * @params 
+ * @return 
+ * @throws
+ * @Description :
+ */
 public class ObjectTest {
 
     public static void main(String[] args) {
@@ -21,15 +31,20 @@ public class ObjectTest {
 
         boolean f7=Objects.equals(new Integer(5), new Integer(5));
         System.err.println("new Integer(5) == new Integer(5) " + f7);
-        System.err.println("new Integer(5) == new Integer(5) "+(new Integer(5) == new Integer(5)));
-
-
-
+        System.err.println("new Integer(5) == new Integer(5) "+(new Integer(5).equals(new Integer(5))));
 
 
 
         boolean f71=Objects.equals(null, 5);
         System.err.println("null == 5 " + f71);
+
+
+
+
+
+        //to_String
+        System.err.println(MoreObjects.toStringHelper("Mytest").add("lai", 1000).toString());
+        
     }
 
 

@@ -49,5 +49,16 @@ public class SimpleTest {
       }
 
 
+    @Test
+    public void test004() {
+        int a = 100, b = 50;
+        a = a ^ b;
+        b = a ^ b;
+        a = a ^ b;
+        System.err.println("a  =  " + a);
+        System.err.println("b  =  " + b);
+    }
+
+
 
 }

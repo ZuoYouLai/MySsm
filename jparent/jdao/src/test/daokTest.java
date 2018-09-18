@@ -1,4 +1,5 @@
 
+import com.jmp.sql.domain.User;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.junit.Test;
@@ -11,17 +12,20 @@ public class daokTest {
 
         boolean l = StringUtils.isBlank("111");
         System.err.println(l);
+
     }
 
 
+    @Test
+    public void test001() {
+        User user = new User();
+        user.setId(0);
+        user.setName("");
+        user.setPassword("");
 
 
+    }
 
-
-
-
-
-//    @T
 
 
 

@@ -34,4 +34,8 @@ public class daokTest {
         boolean kflg = StringUtils.isBlank(null);
         System.err.println(kflg);
     }
+
+
+
+
 }

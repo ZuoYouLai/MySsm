@@ -65,9 +65,17 @@
         <disruptor.version>3.4.2</disruptor.version>
         <spring.redis.data.version>1.7.0.RELEASE</spring.redis.data.version>
         <sun.mail.verison>1.6.0</sun.mail.verison>
+        <weixin.popular.version>2.8.20</weixin.popular.version>
     </properties>
     <dependencyManagement>
         <dependencies>
+
+            <dependency>
+                <groupId>com.github.liyiorg</groupId>
+                <artifactId>weixin-popular</artifactId>
+                <version>${weixin.popular.version}</version>
+            </dependency>
+
             <!-- 时间操作组件 -->
             <dependency>
                 <groupId>joda-time</groupId>

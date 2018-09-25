@@ -18,8 +18,7 @@ import javax.annotation.Resource;
 @Slf4j
 public class INotifyServiceImplTest {
 
-    @Resource
-    private INotifyService iNotifyService;
+
 
 
     @Test

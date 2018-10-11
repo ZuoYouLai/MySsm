@@ -6,6 +6,9 @@ package com.jmp.comm.Enum;
  */
 public enum CacheEnum {
 
+    /**
+     * 缓存的键值内容
+     */
     SIMPLE("simple_user", "simple redis cache"),
     SYNLOCK("syn_user", "synchronized redis cache"),
     LOCK("lock_user", "lock redis cache"),

@@ -4,3 +4,23 @@
     参考文章:
         https://blog.csdn.net/qq_34337272/article/details/80472071#%E4%B8%80-%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F%E4%BB%8B%E7%BB%8D
         https://github.com/CyC2018/Interview-Notebook/blob/master/notes/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.md#2-%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82simple-factory
+
+
+
+
+
+    适配器模式：
+        http://www.cnblogs.com/liuling/archive/2013/04/12/adapter.html
+
+
+        适配器模式的三种角色：
+        　　一、目标：目标是一个接口，该接口是客户想要使用的接口。
+        　　二、被适配者：被适配者是一个已经存在的接口或抽象类，这个接口接口或者抽象类需要适配。
+        　　三、适配器：适配器是一个类，该类实现了目标接口并且包含有被适配者的引用，即适配器的职责是对适配者接口或抽象类与目标接口进行适配。
+
+
+        使用适配器模式主要有以下优点：
+
+        　　1.目标和被适配者是完全解耦的关系。
+
+        　　2.适配器模式满足“开--闭原则”，当添加一个实现了Adapter接口的新类时，不必修改Adapter，Adapter就能对这个新类的实例进行适配。

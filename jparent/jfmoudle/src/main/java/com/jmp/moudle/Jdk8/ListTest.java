@@ -38,7 +38,16 @@ public class ListTest {
         );
 
 
-        List<String> list = oneList.stream().map(x -> x.getString("name")).collect(Collectors.toList());
+        List<String> list = oneList.stream().map(x -> ("`" + x.getString("name") + "`")).collect(Collectors.toList());
         System.err.println("klist   :  " + JSON.toJSONString(list));
+
+
+
+        List<JSONObject> jsonObjectList = oneList.stream().map(x -> {
+            JSONObject k = new JSONObject();
+            k.put(x.getString("name"), x.get("flag"));
+            return k;
+        }).collect(Collectors.toList());
+        System.err.println("jsonObjectList   :  " + JSON.toJSONString(jsonObjectList));
     }
 }

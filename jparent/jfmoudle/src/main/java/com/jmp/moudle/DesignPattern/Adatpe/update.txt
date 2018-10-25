@@ -1,0 +1,44 @@
+  <div class="form-group"><label class="col-md-3 col-sm-12 control-label"style="text-align: left;">
+                                <span class="text-danger">*</span><s:text name="word1304"/></label>
+                                <div class="col-md-6 col-sm-12">
+                                    <input name="" id="buyLctyyjTime" type="text" class="form-control w50 buy-count-s" value="">
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <div class="form-group"><label class="col-md-3 col-sm-12 control-label"style="text-align: left;">
+                                <span class="text-danger">*</span><s:text name="word1304"/></label>
+                                <div class="col-sm-12">
+                                    <input name="" type="text" class="form-control w50 buy-count-s   layer-date" value="" id="tyyjTime">
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                             <div class="form-group" style="margin-bottom: 0px;"><label class="col-md-3 col-sm-12 control-label"style="text-align: left;">
+                                                            <span class="text-danger">*</span><s:text name="word1304"/></label>
+                                                            <div class=" col-sm-12">
+                                                                <input name="" id="LctyyjTime" type="text" class="form-control w50 buy-count-s" value="">
+                                                            </div>
+                                                        </div>

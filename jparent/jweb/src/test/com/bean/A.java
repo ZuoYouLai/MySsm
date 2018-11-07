@@ -1,6 +1,7 @@
 package com.bean;
 
 import lombok.Data;
+import org.junit.Test;
 
 /**
  * Creator : LaiHaoDa
@@ -11,4 +12,7 @@ public class A {
     private Integer age;
     private String name;
     private String password;
+
+
+
 }

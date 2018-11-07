@@ -42,6 +42,11 @@ public class ListTest {
         System.err.println("klist   :  " + JSON.toJSONString(list));
 
 
+
+        List<String> listOne = oneList.stream().map(x -> ("`" + x.getString("name") + "`")).collect(Collectors.toList());
+        System.err.println("klist   :  " + JSON.toJSONString(listOne));
+
+
         List<JSONObject> jsonObjectList = oneList.stream().filter(y -> y.get("xx") != null).map(x -> {
             JSONObject k = new JSONObject();
             k.put(x.getString("name"), x.get("flag"));

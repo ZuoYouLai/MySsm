@@ -1,5 +1,6 @@
 package com.jmp.moudle.Guava;
 
+import com.alibaba.fastjson.JSON;
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
@@ -7,6 +8,7 @@ import com.jmp.comm.Utils.JsonUtil;
 import com.jmp.moudle.Guava.domain.Person;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.google.common.base.Predicates.and;
 import static com.google.common.collect.Lists.newArrayList;
@@ -23,7 +25,8 @@ public class ListTest {
         System.err.println(JsonUtil.toJson(list));
 
 
-
+        List<String> plist=list.stream().map(Person::getName).collect(Collectors.toList());
+        System.err.println(JSON.toJSONString(plist));
 
 
         //年龄大于20

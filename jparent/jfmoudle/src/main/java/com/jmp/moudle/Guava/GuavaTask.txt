@@ -16,3 +16,8 @@ Guava学习:
 
     参考文章 :
         http://ifeve.com/category/guava-2/
+
+
+
+     缓存文章：
+        https://segmentfault.com/a/1190000011105644#articleHeader0

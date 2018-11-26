@@ -1,5 +1,6 @@
 package com.jmp.controller;
 
+import com.jmp.comm.Utils.Constant;
 import com.jmp.comm.Utils.JsonUtil;
 import com.jmp.jpojo.ValidaTestBean;
 import com.jmp.service.UserService;
@@ -34,7 +35,7 @@ public class TestController {
 
 
 //    @RequestMapping(value = {"/list"}, produces = "application/json;charset=utf-8",method = RequestMethod.GET)
-    @RequestMapping(value = {"/list"})
+    @RequestMapping(value = {"/list"}, produces = Constant.HTTP_PRODUCE)
     public String getListData() throws Exception{
         List<User> list = userService.getUserList();
         log.info("test controller.....");
@@ -42,36 +43,35 @@ public class TestController {
     }
 
 
-
-//    F:\Code\GitHub\MySsm\jparent\jweb\src\main\resources\17monipdb.datx
+    //    F:\Code\GitHub\MySsm\jparent\jweb\src\main\resources\17monipdb.datx
     // test/getIp
-    @RequestMapping(value = {"/getIp"})
-    public String getIp(HttpServletRequest request, HttpServletResponse response) throws Exception{
+    @RequestMapping(value = {"/getIp"}, produces = Constant.HTTP_PRODUCE)
+    public String getIp(HttpServletResponse response) throws Exception {
         response.setContentType("text/html;charset=utf-8");
         response.setCharacterEncoding("utf-8");
-        log.info("path : {}",TestController.class.getResource("").toString());
-        log.info("path : {}",TestController.class.getResource("/").toString());
-        log.info("path : {}",TestController.class.getResource("").getPath());
-        log.info("path : {}",TestController.class.getResource("/").getPath());
-        Locator locator = Locator.loadFromLocal(TestController.class.getResource("/").getPath()+"17monipdb.datx");
+        log.info("path : {}", TestController.class.getResource("").toString());
+        log.info("path : {}", TestController.class.getResource("/").toString());
+        log.info("path : {}", TestController.class.getResource("").getPath());
+        log.info("path : {}", TestController.class.getResource("/").getPath());
+        Locator locator = Locator.loadFromLocal(TestController.class.getResource("/").getPath() + "17monipdb.datx");
         LocationInfo ipInfo = locator.find("180.163.159.7");
         log.info("test ip.....");
-        log.info("info country : {}",ipInfo.country);
-        log.info("info is : {}",ipInfo.isp);
-        log.info("info city : {}",ipInfo.city);
+        log.info("info country : {}", ipInfo.country);
+        log.info("info is : {}", ipInfo.isp);
+        log.info("info city : {}", ipInfo.city);
         return ipInfo.toString();
     }
 
 
 
-    @RequestMapping(value = {"/valid"})
+    @RequestMapping(value = {"/valid"}, produces = Constant.HTTP_PRODUCE)
     public String testParams(@RequestBody @Valid ValidaTestBean validaTestBean){
         log.info("valid bean data : {}", JsonUtil.toJson(validaTestBean));
         return "ok";
     }
 
 
-    @RequestMapping(value = {"/zf"})
+    @RequestMapping(value = {"/zf"}, produces = Constant.HTTP_PRODUCE)
     public String zfTest(String name) {
         Map map = new HashMap();
         map.put("name", name);
@@ -83,7 +83,7 @@ public class TestController {
 
 
 
-    @RequestMapping(value = {"/zf1"})
+    @RequestMapping(value = {"/zf1"}, produces = Constant.HTTP_PRODUCE)
     public void zfTest(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setHeader("Content-type", "text/html;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
@@ -97,7 +97,7 @@ public class TestController {
 
 
 
-    @RequestMapping(value = {"/reqbody1"})
+    @RequestMapping(value = {"/reqbody1"}, produces = Constant.HTTP_PRODUCE)
     public String reqbody1(String name) {
         List<Map> listMap = new ArrayList<Map>();
         Map map1 = new HashMap();
@@ -115,7 +115,7 @@ public class TestController {
     }
 
 
-    @RequestMapping(value = {"/reqbody"})
+    @RequestMapping(value = {"/reqbody"}, produces = Constant.HTTP_PRODUCE)
     @ResponseBody
     public String reqbody(String name) {
         List<Map> listMap = new ArrayList<Map>();

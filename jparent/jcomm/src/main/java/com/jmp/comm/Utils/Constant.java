@@ -8,4 +8,10 @@ public class Constant {
 
     public final static String DATE_YMDHMS = "yyyyMMddHHmmss";
 
+
+    /**
+     * 统一的请求内容
+     */
+    public static final String HTTP_PRODUCE = "application/json;charset=utf-8";
+
 }

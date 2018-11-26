@@ -2,7 +2,7 @@
 <configuration>
 
     <!--资源的引入-->
-    <property resource="db.properties" />
+    <property resource="${profiles.activation}-db.properties" />
 	<property name="LOG_HOME" value="${lockback.log.path}"/>
 
     <!-- 控制台 appender -->

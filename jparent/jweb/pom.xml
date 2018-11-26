@@ -100,6 +100,14 @@
                 </includes>
                 <filtering>true</filtering>
             </resource>
+            <!--需要把二进制的文件 https的文件不需要maven进行过滤 则会使文件失真,则不需要这些过滤内容-->
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>17monipdb.datx</include>
+                </includes>
+            </resource>
             <resource>
                 <directory>src/main/resources</directory>
                 <includes>

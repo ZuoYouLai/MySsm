@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import qiniu.ip17mon.LocationInfo;
 import qiniu.ip17mon.Locator;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
@@ -24,9 +22,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
+
+
+
 @RestController
 @RequestMapping("/test")
 @Slf4j
+//@Api(tags = "测试管理")
 public class TestController {
 
 
@@ -34,7 +37,6 @@ public class TestController {
     UserService userService;
 
 
-//    @RequestMapping(value = {"/list"}, produces = "application/json;charset=utf-8",method = RequestMethod.GET)
     @RequestMapping(value = {"/list"}, produces = Constant.HTTP_PRODUCE)
     public String getListData() throws Exception{
         List<User> list = userService.getUserList();
@@ -84,7 +86,7 @@ public class TestController {
 
 
     @RequestMapping(value = {"/zf1"}, produces = Constant.HTTP_PRODUCE)
-    public void zfTest(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void zfTest(HttpServletResponse response) throws IOException {
         response.setHeader("Content-type", "text/html;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
         Map map = new HashMap();
@@ -115,12 +117,15 @@ public class TestController {
     }
 
 
+//    @ApiOperation(value = "测试详情", notes = "一个测试内容详情")
+//    @ApiImplicitParams({@ApiImplicitParam(name = "name", value = "测试名称", required = true, dataType = "String"),
+//            @ApiImplicitParam(name = "type", value = "测试类型", required = true, dataType = "int")})
     @RequestMapping(value = {"/reqbody"}, produces = Constant.HTTP_PRODUCE)
     @ResponseBody
-    public String reqbody(String name) {
+    public String reqbody(String name, Integer type) {
         List<Map> listMap = new ArrayList<Map>();
         Map map1 = new HashMap();
-        map1.put("kk","lop");
+        map1.put("kk", "lop");
         listMap.add(map1);
         listMap.add(map1);
         listMap.add(map1);
@@ -129,7 +134,7 @@ public class TestController {
         map.put("list", listMap);
         map.put("list2", JsonUtil.toJson(map));
         map.put("赖", "好哒");
-        log.info("data :{}",JsonUtil.toJson(map));
+        log.info("data :{}", JsonUtil.toJson(map));
         return JsonUtil.toJson(map);
     }
 

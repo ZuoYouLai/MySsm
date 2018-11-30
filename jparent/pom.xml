@@ -66,6 +66,7 @@
         <spring.redis.data.version>1.7.0.RELEASE</spring.redis.data.version>
         <sun.mail.verison>1.6.0</sun.mail.verison>
         <weixin.popular.version>2.8.20</weixin.popular.version>
+        <swagger.version>2.9.2</swagger.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -379,6 +380,23 @@
                 <version>${disruptor.version}</version>
             </dependency>
 
+            <!--swagger -->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>2.7.5</version>
+            </dependency>
 
             <!-- https://mvnrepository.com/artifact/org.apache.tomcat.maven/tomcat8-maven-plugin -->
             <!-- tomcat8 以maven发布启动,在对应的scope域编译打包的方式,最终的项目的包不会产生冲突的-->

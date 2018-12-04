@@ -1,7 +1,9 @@
 package com.jmp.comm.Utils;
 
+import com.alibaba.fastjson.JSONObject;
 import org.joda.time.DateTime;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 
@@ -51,6 +53,35 @@ public class ToolUtils {
      */
     public static String getKey(String prefix, Object suffix) {
         return new StringBuilder().append(prefix).append("_").append(suffix.toString()).toString();
+    }
+
+
+    /**
+     * 获取年月日的连接符号
+     * @return
+     */
+    public static String getSysYearAndMonthAndDay() {
+        Calendar date = Calendar.getInstance();
+        String year = String.valueOf(date.get(Calendar.YEAR));
+        String month = String.valueOf(date.get(Calendar.MONTH) + 1);
+        String day = String.valueOf(date.get(Calendar.DAY_OF_MONTH));
+        String url = year + "/" + month + "/" + day;
+        return url;
+    }
+
+
+    /**
+     * 判断字符是否json格式
+     * @param content
+     * @return
+     */
+    public static Boolean isJson(String content) {
+        try {
+            Object jsonObject = JSONObject.parse(content);
+            return Boolean.TRUE;
+        } catch (Exception e) {
+            return Boolean.FALSE;
+        }
     }
 
 }

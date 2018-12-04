@@ -22,7 +22,6 @@ public class TestServiceTest {
 
     @Test
     public void test001() {
-        helper.execute(new SupportBean(0));
     }
 
 }

@@ -1,7 +1,8 @@
 package com.jmp.comm.Dto;
 
 import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 /**
  * @ Author     ：SamLai
@@ -9,11 +10,18 @@ import lombok.extern.slf4j.Slf4j;
  * @ Description：区分service的类型
  */
 @Data
+@ToString
+@NoArgsConstructor
 public class SupportBean {
 
     private Integer supportNum;
 
-    public SupportBean(Integer supportNum) {
-        this.supportNum = supportNum;
+//    public SupportBean(Integer supportNum) {
+//        this.supportNum = supportNum;
+//    }
+
+    public static void main(String[] args) {
+        System.err.println(new SupportBean());
+//        System.err.println(new SupportBean(11));
     }
 }

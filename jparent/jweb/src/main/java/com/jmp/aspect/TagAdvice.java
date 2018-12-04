@@ -1,8 +1,6 @@
 package com.jmp.aspect;
 
 import com.jmp.annotation.MyTag;
-import com.jmp.comm.RequestHolder;
-import com.jmp.comm.Utils.JsonUtil;
 import com.jmp.redis.JedisService;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
@@ -13,8 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * @ Author     ：SamLai

@@ -73,6 +73,13 @@
             <artifactId>weixin-popular</artifactId>
         </dependency>
 
+
+        <!-- 文件上传组件 -->
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+        </dependency>
+
         <!--swagger-->
         <!--<dependency>-->
             <!--<groupId>io.springfox</groupId>-->

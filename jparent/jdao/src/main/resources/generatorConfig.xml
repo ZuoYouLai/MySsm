@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE generatorConfiguration
-        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
-
 <generatorConfiguration>
-
-    <context id="all" targetRuntime="MyBatis3">
+    <context id="all" targetRuntime="MyBatis3" defaultModelType="flat">
 
          <!-- 自动识别数据库关键字，默认false，如果设置为true，根据SqlReservedWords中定义的关键字列表；
        			 一般保留默认值，遇到数据库关键字（Java关键字），使用columnOverride覆盖 -->
@@ -21,8 +18,8 @@
         
         <!-- 注释产生配置 -->
 		<commentGenerator>
-			<property name="suppressAllComments" value="false" />
-			<property name="suppressDate" value="false" />
+			<property name="suppressAllComments" value="true" />
+			<property name="suppressDate" value="tre" />
 		</commentGenerator>
         
         
@@ -64,7 +61,7 @@
 
 
 
-        <table tableName="user_point" domainObjectName="UserPoint" >
+        <table tableName="user_file" domainObjectName="UserFile" >
             <generatedKey column="id" sqlStatement="mysql" identity="true"/>
         </table>
 

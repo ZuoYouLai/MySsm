@@ -23,7 +23,7 @@ import java.util.List;
  * @ Description：dubbo服务的内容
  */
 @Slf4j
-@Service
+@Service("baseService")
 public class BaseServiceImpl implements BaseService{
 
     @Autowired

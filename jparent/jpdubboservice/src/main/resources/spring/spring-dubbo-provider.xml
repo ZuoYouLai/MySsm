@@ -14,6 +14,6 @@
 
     <dubbo:protocol name="dubbo" port="20880"/>
 
-    <dubbo:service ref="BaseServiceImpl" interface="com.japi.service.BaseService" timeout="1000000"/>
+    <dubbo:service ref="baseService" interface="com.japi.service.BaseService" timeout="1000000"/>
 
 </beans>

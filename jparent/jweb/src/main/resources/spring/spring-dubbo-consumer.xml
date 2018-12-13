@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <dubbo:application name="web-api-dubbo-consumer" ></dubbo:application>
+    <dubbo:registry address="${zookeeper.address}" protocol="zookeeper"/>
+    <!--<dubbo:registry address="multicast://47.106.133.76:2181?unicast=false" />-->
+    <!-- 服务应用方调用的超时时间。默认不配置，则以服务提供方的超时时间为准。check为false表示延迟加载dubbo依赖的服务-->
+    <dubbo:consumer retries="0" check="false" timeout="5000"/>
+    <!-- dubbo注册到zookeeper，用于预发布或生产环境 -->
+    <!-- <dubbo:registry protocol="zookeeper" address="${zookeeper.addr}" /> -->
+    <!-- 像引用spring的bean服务一样引用dubbo提供的接口，用于预发布和生产环境-->
+    <!-- <dubbo:reference id="dubboServiceTest"  interface="com.hjz.dubbo.api.DubboServiceTest" /> -->
+    <!-- dubbo直连方式，只用于开发或测试阶段 -->
+    <!-- 监控中心配置，从注册中心发现监控中心地址 -->
+    <!--<dubbo:monitor protocol="registry"/>-->
+    <dubbo:reference id="basicsService" interface="com.japi.service.BaseService"/>
+
+</beans>

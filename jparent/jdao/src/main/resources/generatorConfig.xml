@@ -61,7 +61,7 @@
 
 
 
-        <table tableName="user_file" domainObjectName="UserFile" >
+        <table tableName="user_point" domainObjectName="UserPoint" >
             <generatedKey column="id" sqlStatement="mysql" identity="true"/>
         </table>
 

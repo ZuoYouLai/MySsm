@@ -15,6 +15,8 @@
         <module>jweb</module>
         <module>jpojo</module>
         <module>jfmoudle</module>
+        <module>jpdubboapi</module>
+        <module>jpdubboservice</module>
     </modules>
 
 
@@ -67,6 +69,9 @@
         <sun.mail.verison>1.6.0</sun.mail.verison>
         <weixin.popular.version>2.8.20</weixin.popular.version>
         <swagger.version>2.9.2</swagger.version>
+        <zookeeper.version>3.4.12</zookeeper.version>
+        <zkclient.version>0.1</zkclient.version>
+        <dubbo.version>2.6.3</dubbo.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -75,6 +80,37 @@
                 <groupId>com.github.liyiorg</groupId>
                 <artifactId>weixin-popular</artifactId>
                 <version>${weixin.popular.version}</version>
+            </dependency>
+
+            <!-- dubbo -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>dubbo</artifactId>
+                <version>${dubbo.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>spring</artifactId>
+                        <groupId>*</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <!-- zookeeper -->
+            <dependency>
+                <groupId>org.apache.zookeeper</groupId>
+                <artifactId>zookeeper</artifactId>
+                <version>${zookeeper.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>slf4j-log4j12</artifactId>
+                        <groupId>*</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>com.github.sgroschupf</groupId>
+                <artifactId>zkclient</artifactId>
+                <version>${zkclient.version}</version>
             </dependency>
 
             <!-- 时间操作组件 -->

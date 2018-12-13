@@ -57,7 +57,7 @@ public class UserCacheServiceImpl implements UserCacheService {
                     value = jedisService.get(key);
                     if (StringUtils.isBlank(value)) {
                         log.info("...select...");
-                        User user = userMapper.selectByPrimaryKey(userId);
+                        User user = userMapper.selectByPrimaryKey(new Long(userId));
                         value = JsonUtil.toJson(user);
                         jedisService.set(key, value);
                     } else {
@@ -85,7 +85,7 @@ public class UserCacheServiceImpl implements UserCacheService {
         }, new CacheLoadable<User>() {
             @Override
             public User load(Integer id) {
-                return userMapper.selectByPrimaryKey(userId);
+                return userMapper.selectByPrimaryKey(new Long(userId));
             }
         }, userId);
     }
@@ -103,7 +103,7 @@ public class UserCacheServiceImpl implements UserCacheService {
         }
 
         log.info("...select...");
-        User user = userMapper.selectByPrimaryKey(userId);
+        User user = userMapper.selectByPrimaryKey(new Long(userId));
         value = JsonUtil.toJson(user);
         jedisService.set(key, value);
         return value;
@@ -132,7 +132,7 @@ public class UserCacheServiceImpl implements UserCacheService {
                 return value;
             }
             log.info("...select...");
-            User user = userMapper.selectByPrimaryKey(userId);
+            User user = userMapper.selectByPrimaryKey(new Long(userId));
             value = JsonUtil.toJson(user);
             jedisService.set(key, value);
             return value;

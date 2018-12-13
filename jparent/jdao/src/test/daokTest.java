@@ -19,7 +19,6 @@ public class daokTest {
     @Test
     public void test001() {
         User user = new User();
-        user.setId(0);
         user.setName("");
         user.setPassword("");
 

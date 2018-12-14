@@ -19,7 +19,6 @@ import java.security.SecureRandom;
 @Slf4j
 public class AESUtil {
 
-    private static final String ENCODE_RULES = "zheng";
 
     /**
      * 加密
@@ -30,14 +29,14 @@ public class AESUtil {
      * 5.内容加密
      * 6.返回字符串
      */
-    public static String aesEncode(String content) {
+    public static String aesEncode(String content, String salt) {
         try {
             //1.构造密钥生成器，指定为AES算法,不区分大小写
             KeyGenerator keygen = KeyGenerator.getInstance("AES");
             //2.根据ecnodeRules规则初始化密钥生成器
             //生成一个128位的随机源,根据传入的字节数组
             SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
-            random.setSeed(ENCODE_RULES.getBytes());
+            random.setSeed(salt.getBytes());
             keygen.init(128, random);
             //3.产生原始对称密钥
             SecretKey originalKey = keygen.generateKey();
@@ -59,9 +58,9 @@ public class AESUtil {
             //在项目的Build path中先移除JRE System Library，再添加库JRE System Library，重新编译后就一切正常了。
             return Base64Utils.encodeToString(byteAES);
         } catch (GeneralSecurityException e) {
-            log.error("",e);
+            log.error("", e);
         } catch (IOException e) {
-            log.error("",e);
+            log.error("", e);
         }
         //如果有错就返加null
         return null;
@@ -74,14 +73,14 @@ public class AESUtil {
      * 2.将加密后的字符串反纺成byte[]数组
      * 3.将加密内容解密
      */
-    public static String aesDecode(String content) {
+    public static String aesDecode(String content, String salt) {
         try {
             //1.构造密钥生成器，指定为AES算法,不区分大小写
             KeyGenerator keygen = KeyGenerator.getInstance("AES");
             //2.根据ecnodeRules规则初始化密钥生成器
             //生成一个128位的随机源,根据传入的字节数组
             SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
-            random.setSeed(ENCODE_RULES.getBytes());
+            random.setSeed(salt.getBytes());
             keygen.init(128, random);
             //3.产生原始对称密钥
             SecretKey originalKey = keygen.generateKey();
@@ -112,14 +111,14 @@ public class AESUtil {
 
     public static void main(String[] args) {
         String[] keys = {
-                "", "275688"
+                "kpl", "275688"
         };
         System.out.println("key | aesEncode | aesDecode");
         for (String key : keys) {
             System.out.print(key + " | ");
-            String encryptString = aesEncode(key);
+            String encryptString = aesEncode(key,"lai");
             System.out.print(encryptString + " | ");
-            String decryptString = aesDecode(encryptString);
+            String decryptString = aesDecode(encryptString,"lai");
             System.out.print(decryptString);
             System.out.println();
         }

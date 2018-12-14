@@ -84,4 +84,15 @@ public class ToolUtils {
         }
     }
 
+
+    /**
+     * @author samLai
+     * @date 2018/12/14 17:49
+     * @params [message]
+     * @Description : 返回相应错误的信息内容
+     */
+    public static void error(String message) {
+        throw new RuntimeException(message);
+    }
+
 }

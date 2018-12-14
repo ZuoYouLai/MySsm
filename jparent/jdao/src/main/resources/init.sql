@@ -33,9 +33,10 @@ CREATE TABLE `passports` (
 
 
 
-
+DROP TABLE item;
 CREATE TABLE `item` (
   `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+  `user_id` BIGINT(20) NOT NULL COMMENT '商户id',
   `name` VARCHAR(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '商品名称',
   `content` TEXT DEFAULT NULL COMMENT '商品排版内容(html)',
   `expire` DATETIME DEFAULT NULL COMMENT '过期时间',
@@ -43,8 +44,6 @@ CREATE TABLE `item` (
   `updated_at` DATETIME DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
-
-
 
 
 

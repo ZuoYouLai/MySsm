@@ -61,7 +61,11 @@
 
 
 
-        <table tableName="user_point" domainObjectName="UserPoint" >
+        <table tableName="item" domainObjectName="Item" >
+            <generatedKey column="id" sqlStatement="mysql" identity="true"/>
+        </table>
+
+        <table tableName="passports" domainObjectName="Passports" >
             <generatedKey column="id" sqlStatement="mysql" identity="true"/>
         </table>
 

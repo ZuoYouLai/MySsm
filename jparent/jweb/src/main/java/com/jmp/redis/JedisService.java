@@ -7,9 +7,31 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 public class JedisService extends Jedis {
     private JedisConnectionFactory jedisConnectionFactory;
+
+
+    /**
+     * 根据相应的TimeUnit设置有效时间
+     *
+     * @param key
+     * @param value
+     * @param num
+     * @param unit
+     * @return
+     * @author samLai
+     */
+    public String set(String key, String value, int num, TimeUnit unit) {
+        try (Jedis jedis = jedisConnectionFactory.getJedisConnection()) {
+            Objects.requireNonNull(jedis, "获取redis数据库连接失败");
+            String result = jedis.set(key, value);
+            Long timeNum = unit.toSeconds(num);
+            jedis.expire(key, timeNum.intValue());
+            return result;
+        }
+    }
 
     @Override
     public String set(String key, String value) {

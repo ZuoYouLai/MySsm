@@ -1,9 +1,13 @@
 package com.service;
 
 import com.google.common.base.Function;
+import com.jmp.comm.Utils.AESUtil;
+import com.jmp.comm.Utils.ToolUtils;
 import com.jmp.service.UserPointService;
+import com.jmp.sql.domain.Passports;
 import com.jmp.sql.domain.UserPoint;
 import com.jmp.sql.domain.UserPointExample;
+import com.jmp.sql.mapper.PassportsMapper;
 import com.jmp.sql.mapper.UserPointMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,6 +16,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import weixin.popular.util.EmojiUtil;
 
+import java.util.Date;
 import java.util.List;
 
 import static com.google.common.collect.Lists.newArrayList;
@@ -33,6 +38,27 @@ public class UserPointServiceTest {
     @Autowired
     private UserPointMapper userPointMapper;
 
+    @Autowired
+    private PassportsMapper passportsMapper;
+
+
+
+
+     /**
+        *
+        */
+      @Test
+      public void test0021(){
+          Passports passports = new Passports();
+          passports.setAccount("lhd");
+          passports.setEmail("lhd");
+          String salt = ToolUtils.getRandStr(6);
+          passports.setSalt(salt);
+          passports.setCreatedAt(new Date());
+          passports.setUpdatedAt(new Date());
+          passports.setPassword(AESUtil.aesEncode("lhd", salt));
+          passportsMapper.insertSelective(passports);
+      }
 
     @Test
     public void testInsert() {

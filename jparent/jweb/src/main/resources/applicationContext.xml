@@ -39,7 +39,8 @@
     <import resource="classpath:quartz.xml"/>
     <import resource="classpath:spring/redis-applicationContext.xml"/>
     <import resource="classpath:spring/disruptor.xml"/>
-    <import resource="classpath:spring/spring-dubbo-consumer.xml"/>
+   <!-- <import resource="classpath:spring/spring-dubbo-consumer.xml"/>-->
+
 
 
     <context:annotation-config/>

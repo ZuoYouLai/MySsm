@@ -36,11 +36,6 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
-    public static final String LOGIN_INDEX = "login_token";
-
-
-
-
 
     /**
      * method :  post
@@ -55,7 +50,7 @@ public class LoginController {
     public String getListData(String userName, String password) {
         Passports result = loginService.loginResult(userName, password);
         String token = ToolUtils.getRandStr(7);
-        String key = ToolUtils.getKey(LOGIN_INDEX, token);
+        String key = ToolUtils.getKey(Constant.LOGIN_INDEX, token);
         jedisService.set(key, JSON.toJSONString(result), 5, TimeUnit.HOURS);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("loginTime", new DateTime().toString(Constant.DATE_YMD_HMS));

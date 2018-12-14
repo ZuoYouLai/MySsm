@@ -17,6 +17,12 @@ public class Constant {
     public static final String HTTP_PRODUCE = "application/json;charset=utf-8";
 
 
+    //登陆的token内容
+    public static final String LOGIN_INDEX = "login_token";
+
+
+    //商品的缓存前缀
+    public static final String ITEM_INDEX = "item_id";
 
     /**
      * 全平台,Alibaba FastJSON框架默认序列化行为;

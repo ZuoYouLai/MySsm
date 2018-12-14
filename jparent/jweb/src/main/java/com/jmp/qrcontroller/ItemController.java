@@ -1,6 +1,8 @@
 package com.jmp.qrcontroller;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.jmp.annotation.MyDemo;
 import com.jmp.comm.Utils.Constant;
 import com.jmp.comm.Utils.ResultUtils;
 import com.jmp.comm.Utils.ToolUtils;
@@ -9,11 +11,13 @@ import com.jmp.redis.JedisService;
 import com.jmp.service.ItemService;
 import com.jmp.service.LoginService;
 import com.jmp.sql.domain.Item;
+import com.jmp.sql.domain.Passports;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
@@ -32,9 +36,13 @@ public class ItemController {
     @Autowired
     private ItemService itemService;
 
-    public static final String LOGIN_INDEX = "item_id";
 
-
+    private Passports getOneUserId(HttpServletRequest request) {
+        String token = request.getHeader("token");
+        String loginKey = ToolUtils.getKey(Constant.LOGIN_INDEX, token);
+        String value = jedisService.get(loginKey);
+        return JSON.parseObject(value, Passports.class);
+    }
 
 
     /**
@@ -46,9 +54,10 @@ public class ItemController {
      * @return java.lang.String
      * @Description :新增操作
      */
+    @MyDemo
     @RequestMapping(produces = Constant.HTTP_PRODUCE, method = RequestMethod.POST)
-    public String insert(Item item) {
-        Item tk = itemService.createOneItem(item);
+    public String insert(HttpServletRequest request,Item item) {
+        Item tk = itemService.createOneItem(item, getOneUserId(request).getId());
         return ResultUtils.successJSON(tk, "新增成功");
     }
 
@@ -63,9 +72,10 @@ public class ItemController {
      * @throws
      * @Description :
      */
+    @MyDemo
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
-    public String updateTag(Item item) {
-        int size = itemService.updateOneIntem(item);
+    public String updateTag(HttpServletRequest request,Item item) {
+        int size = itemService.updateOneIntem(item, getOneUserId(request).getId());
         return ResultUtils.successJSON((size == 1) ? "新增成功" : "新增失败");
     }
 
@@ -81,34 +91,34 @@ public class ItemController {
      * @throws
      * @Description :查询列表内容
      */
+    @MyDemo
     @RequestMapping(method = RequestMethod.GET)
-    public String listTag(String name, Integer page, Integer pageSize) {
+    public String listTag(HttpServletRequest request,String name, Integer page, Integer pageSize) {
         if (page == null) {
             page = 1;
         }
         if (pageSize == null) {
             pageSize = 10;
         }
-        PageListDTO<Item> listDTO = itemService.list(name, page, pageSize);
+        PageListDTO<Item> listDTO = itemService.list(name, page, pageSize, getOneUserId(request).getId());
         return ResultUtils.successJSON(listDTO, "查询成功");
     }
-
-
 
 
     /**
      * method :  post
      * url :  /item/{id}/destroy
+     *
+     * @return java.lang.String
+     * @throws
      * @author samLai
      * @date 2018/12/14 18:28
      * @params [id]
-     * @return java.lang.String
-     * @throws
      * @Description :
      */
     @RequestMapping(value = "/{id}/destroy", method = RequestMethod.POST)
-    public String deleteTag(@PathVariable("id") Long id) {
-        int size = itemService.delOneItem(id);
+    public String deleteTag(@PathVariable("id") Long id, HttpServletRequest request) {
+        int size = itemService.delOneItem(id, getOneUserId(request).getId());
         return ResultUtils.successJSON((size == 1) ? "删除成功" : "删除失败");
     }
 

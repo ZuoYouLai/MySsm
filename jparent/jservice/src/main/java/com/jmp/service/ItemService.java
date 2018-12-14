@@ -12,10 +12,11 @@ public interface ItemService {
 
     /**
      * 新增一个商品名称
+     *
      * @param item
      * @return
      */
-    Item createOneItem(Item item);
+    Item createOneItem(Item item, Long userId);
 
 
     /**
@@ -23,7 +24,7 @@ public interface ItemService {
      * @param item
      * @return
      */
-    int updateOneIntem(Item item);
+    int updateOneIntem(Item item, Long userId);
 
 
     /**
@@ -31,7 +32,7 @@ public interface ItemService {
      * @param id
      * @return
      */
-    int delOneItem(Long id);
+    int delOneItem(Long id, Long userId);
 
 
     /**
@@ -39,7 +40,7 @@ public interface ItemService {
      * @param name
      * @return
      */
-    PageListDTO<Item> list(String name, int page, int pageSize);
+    PageListDTO<Item> list(String name, int page, int pageSize, Long userId);
 
 
 

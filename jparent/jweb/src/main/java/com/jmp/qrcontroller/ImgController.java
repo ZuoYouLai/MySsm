@@ -29,7 +29,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/img")
 @Slf4j
-public class FileController {
+public class ImgController {
 
 
     @Resource

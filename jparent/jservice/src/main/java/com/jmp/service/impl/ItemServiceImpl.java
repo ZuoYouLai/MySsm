@@ -30,9 +30,10 @@ public class ItemServiceImpl implements ItemService {
 
 
     @Override
-    public Item createOneItem(Item item) {
+    public Item createOneItem(Item item, Long userId) {
         item.setCreatedAt(new Date());
         item.setUpdatedAt(new Date());
+        item.setUserId(userId);
         itemMapper.insertSelective(item);
         return item;
     }
@@ -40,25 +41,30 @@ public class ItemServiceImpl implements ItemService {
 
 
     @Override
-    public int updateOneIntem(Item item) {
+    public int updateOneIntem(Item item, Long userId) {
         item.setUpdatedAt(new Date());
+        item.setUserId(userId);
         itemMapper.updateByPrimaryKeyWithBLOBs(item);
         return 0;
     }
 
     @Override
-    public int delOneItem(Long id) {
-        int size = itemMapper.deleteByPrimaryKey(id);
+    public int delOneItem(Long id, Long userId) {
+        ItemExample itemExample = new ItemExample();
+        itemExample.createCriteria().andUserIdEqualTo(userId).andIdEqualTo(id);
+        int size = itemMapper.deleteByExample(itemExample);
         return size;
     }
 
 
 
     @Override
-    public PageListDTO<Item> list(String name, int page, int pageSize) {
+    public PageListDTO<Item> list(String name, int page, int pageSize, Long userId) {
         ItemExample itemExample = new ItemExample();
+        ItemExample.Criteria criteria = itemExample.createCriteria();
+        criteria.andUserIdEqualTo(userId);
         if (StringUtils.isNotBlank(name)) {
-            itemExample.createCriteria().andNameLike(" %" + name + "% ");
+            criteria.andNameLike(" %" + name + "% ");
         }
         PageHelper.startPage(page, pageSize);
         List<Item> items = itemMapper.selectByExampleWithBLOBs(itemExample);

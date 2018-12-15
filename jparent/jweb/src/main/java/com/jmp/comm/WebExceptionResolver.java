@@ -2,6 +2,7 @@ package com.jmp.comm;
 
 import com.jmp.comm.Utils.JsonData;
 import com.jmp.comm.Utils.JsonUtil;
+import com.jmp.comm.Utils.ResultUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
@@ -28,7 +29,7 @@ public class WebExceptionResolver implements HandlerExceptionResolver {
         log.error("error occur exception:" + ex.getMessage(), ex);
         response.setContentType("application/json;charset=utf-8");
         try {
-            response.getWriter().write(JsonUtil.toJson(JsonData.fail(defaultMsg)));
+            response.getWriter().write(ResultUtils.failJSON(ex.getMessage()));
         } catch (IOException e) {
             e.printStackTrace();
         }

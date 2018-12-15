@@ -56,7 +56,7 @@ public class ItemController {
      */
     @MyDemo
     @RequestMapping(produces = Constant.HTTP_PRODUCE, method = RequestMethod.POST)
-    public String insert(HttpServletRequest request,Item item) {
+    public String insertOrSave(HttpServletRequest request,Item item) {
         Item tk = itemService.createOneItem(item, getOneUserId(request).getId());
         return ResultUtils.successJSON(tk, "新增成功");
     }
@@ -74,9 +74,9 @@ public class ItemController {
      */
     @MyDemo
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
-    public String updateTag(HttpServletRequest request,Item item) {
-        int size = itemService.updateOneIntem(item, getOneUserId(request).getId());
-        return ResultUtils.successJSON((size == 1) ? "新增成功" : "新增失败");
+    public String detail(HttpServletRequest request,@PathVariable("id") Long id) {
+        Item item = itemService.detail(id, getOneUserId(request).getId());
+        return ResultUtils.successJSON(item, "查询成功");
     }
 
 

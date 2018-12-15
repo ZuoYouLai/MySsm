@@ -1,8 +1,8 @@
 package com.jmp.service.impl;
 
-import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.jmp.comm.Utils.ToolUtils;
 import com.jmp.jpojo.PageListDTO;
 import com.jmp.service.ItemService;
 import com.jmp.sql.domain.Item;
@@ -31,13 +31,27 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public Item createOneItem(Item item, Long userId) {
-        item.setCreatedAt(new Date());
         item.setUpdatedAt(new Date());
-        item.setUserId(userId);
-        itemMapper.insertSelective(item);
+        if (item.getId() != null) {
+            itemMapper.updateByPrimaryKeyWithBLOBs(item);
+        }else{
+            item.setCreatedAt(new Date());
+            item.setUserId(userId);
+            itemMapper.insertSelective(item);
+        }
         return item;
     }
 
+    @Override
+    public Item detail(Long id, Long userId) {
+        ItemExample itemExample = new ItemExample();
+        itemExample.createCriteria().andUserIdEqualTo(userId).andIdEqualTo(id);
+        List<Item> itemList = itemMapper.selectByExample(itemExample);
+        if (itemList.isEmpty()) {
+            ToolUtils.error("查无此商品内容");
+        }
+        return itemList.get(0);
+    }
 
 
     @Override

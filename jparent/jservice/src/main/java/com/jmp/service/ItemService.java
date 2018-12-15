@@ -20,6 +20,15 @@ public interface ItemService {
 
 
     /**
+     * 商品的详情内容
+     * @param id
+     * @param userId
+     * @return
+     */
+    Item detail(Long id, Long userId);
+
+
+    /**
      * 更新一个商品名称
      * @param item
      * @return

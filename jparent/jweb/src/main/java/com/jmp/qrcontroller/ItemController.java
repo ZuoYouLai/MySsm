@@ -13,6 +13,7 @@ import com.jmp.service.LoginService;
 import com.jmp.sql.domain.Item;
 import com.jmp.sql.domain.Passports;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
@@ -73,9 +74,19 @@ public class ItemController {
      * @Description :
      */
     @MyDemo
-    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String detail(HttpServletRequest request,@PathVariable("id") Long id) {
-        Item item = itemService.detail(id, getOneUserId(request).getId());
+        String key = ToolUtils.getKey(Constant.ITEM_INDEX, id);
+        String value = jedisService.get(key);
+        Item item = null;
+        if (StringUtils.isBlank(value)) {
+            log.info("from select id {}", id);
+            item = itemService.detail(id, getOneUserId(request).getId());
+            jedisService.set(key, JSON.toJSONString(item), 3, TimeUnit.HOURS);
+        }else{
+            log.info("from cache id {}", id);
+            item = JSON.parseObject(value, Item.class);
+        }
         return ResultUtils.successJSON(item, "查询成功");
     }
 
@@ -119,6 +130,9 @@ public class ItemController {
     @RequestMapping(value = "/{id}/destroy", method = RequestMethod.POST)
     public String deleteTag(@PathVariable("id") Long id, HttpServletRequest request) {
         int size = itemService.delOneItem(id, getOneUserId(request).getId());
+        String key = ToolUtils.getKey(Constant.ITEM_INDEX, id);
+        jedisService.del(key);
+        log.info("del {}  cache", id);
         return ResultUtils.successJSON((size == 1) ? "删除成功" : "删除失败");
     }
 

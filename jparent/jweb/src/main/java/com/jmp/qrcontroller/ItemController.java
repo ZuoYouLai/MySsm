@@ -59,6 +59,8 @@ public class ItemController {
     @RequestMapping(produces = Constant.HTTP_PRODUCE, method = RequestMethod.POST)
     public String insertOrSave(HttpServletRequest request,Item item) {
         Item tk = itemService.createOneItem(item, getOneUserId(request).getId());
+        String key = ToolUtils.getKey(Constant.ITEM_INDEX, tk.getId());
+        jedisService.del(key);
         return ResultUtils.successJSON(tk, "新增成功");
     }
 
@@ -73,7 +75,6 @@ public class ItemController {
      * @throws
      * @Description :
      */
-    @MyDemo
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String detail(HttpServletRequest request,@PathVariable("id") Long id) {
         String key = ToolUtils.getKey(Constant.ITEM_INDEX, id);

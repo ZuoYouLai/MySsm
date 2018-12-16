@@ -45,7 +45,11 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public Item detail(Long id, Long userId) {
         ItemExample itemExample = new ItemExample();
-        itemExample.createCriteria().andUserIdEqualTo(userId).andIdEqualTo(id);
+        ItemExample.Criteria criteria = itemExample.createCriteria();
+        criteria.andIdEqualTo(id);
+        if (userId != null) {
+            criteria.andUserIdEqualTo(userId);
+        }
         List<Item> itemList = itemMapper.selectByExample(itemExample);
         if (itemList.isEmpty()) {
             ToolUtils.error("查无此商品内容");

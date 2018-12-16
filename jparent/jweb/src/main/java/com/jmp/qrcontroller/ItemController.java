@@ -75,6 +75,7 @@ public class ItemController {
      * @throws
      * @Description :
      */
+    @MyDemo
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String detail(HttpServletRequest request,@PathVariable("id") Long id) {
         String key = ToolUtils.getKey(Constant.ITEM_INDEX, id);
@@ -91,6 +92,23 @@ public class ItemController {
         return ResultUtils.successJSON(item, "查询成功");
     }
 
+
+
+    @RequestMapping(value = "/{id}/qr", method = RequestMethod.GET)
+    public String qrdetail(HttpServletRequest request,@PathVariable("id") Long id) {
+        String key = ToolUtils.getKey(Constant.ITEM_INDEX, id);
+        String value = jedisService.get(key);
+        Item item = null;
+        if (StringUtils.isBlank(value)) {
+            log.info("from select id {}", id);
+            item = itemService.detail(id, null);
+            jedisService.set(key, JSON.toJSONString(item), 3, TimeUnit.HOURS);
+        }else{
+            log.info("from cache id {}", id);
+            item = JSON.parseObject(value, Item.class);
+        }
+        return ResultUtils.successJSON(item, "查询成功");
+    }
 
 
     /**

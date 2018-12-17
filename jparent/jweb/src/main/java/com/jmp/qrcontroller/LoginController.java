@@ -49,6 +49,8 @@ public class LoginController {
      */
     @RequestMapping(produces = Constant.HTTP_PRODUCE, method = RequestMethod.POST)
     public String getListData(String userName, String password) {
+        Assert.hasText(userName, "用户名不能为空");
+        Assert.hasText(password, "密码不能为空");
         Passports result = loginService.loginResult(userName, password);
         String token = ToolUtils.getRandStr(7);
         String key = ToolUtils.getKey(Constant.LOGIN_INDEX, token);

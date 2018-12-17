@@ -58,10 +58,11 @@ public class ItemController {
     @MyDemo
     @RequestMapping(produces = Constant.HTTP_PRODUCE, method = RequestMethod.POST)
     public String insertOrSave(HttpServletRequest request,Item item) {
+        Boolean flag = (item.getId() != null);
         Item tk = itemService.createOneItem(item, getOneUserId(request).getId());
         String key = ToolUtils.getKey(Constant.ITEM_INDEX, tk.getId());
         jedisService.del(key);
-        return ResultUtils.successJSON(tk, "新增成功");
+        return ResultUtils.successJSON(tk, flag ? "更新成功" : "新增成功");
     }
 
 

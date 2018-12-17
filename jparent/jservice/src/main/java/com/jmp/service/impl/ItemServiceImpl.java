@@ -15,6 +15,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.Date;
 import java.util.List;
@@ -44,8 +45,13 @@ public class ItemServiceImpl implements ItemService {
         log.info("userId  :  {}", userId);
         item.setUpdatedAt(new Date());
         if (item.getId() != null) {
-            item.setUserId(userId);
+            List<Item> itemList = getItems(item.getId(), userId);
+            if (CollectionUtils.isEmpty(itemList)) {
+                throw new RuntimeException("查无此商品");
+            }
+            Item ik = itemList.get(0);
             item.setUpdatedAt(new Date());
+            ik.setContent(item.getContent());
             itemMapper.updateByPrimaryKeyWithBLOBs(item);
         }else{
             item.setCreatedAt(new Date());
@@ -57,13 +63,7 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public JSONObject detail(Long id, Long userId) {
-        ItemExample itemExample = new ItemExample();
-        ItemExample.Criteria criteria = itemExample.createCriteria();
-        criteria.andIdEqualTo(id);
-        if (userId != null) {
-            criteria.andUserIdEqualTo(userId);
-        }
-        List<Item> itemList = itemMapper.selectByExampleWithBLOBs(itemExample);
+        List<Item> itemList = getItems(id, userId);
         if (itemList.isEmpty()) {
             ToolUtils.error("查无此商品内容");
         }
@@ -72,6 +72,16 @@ public class ItemServiceImpl implements ItemService {
         JSONObject finalObj = ToolUtils.objectToJson(target, JSONObject.class);
         finalObj.put("qrUrl", qrUrl);
         return finalObj;
+    }
+
+    private List<Item> getItems(Long id, Long userId) {
+        ItemExample itemExample = new ItemExample();
+        ItemExample.Criteria criteria = itemExample.createCriteria();
+        criteria.andIdEqualTo(id);
+        if (userId != null) {
+            criteria.andUserIdEqualTo(userId);
+        }
+        return itemMapper.selectByExampleWithBLOBs(itemExample);
     }
 
 

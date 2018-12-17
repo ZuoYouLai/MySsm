@@ -1,5 +1,6 @@
 package com.jmp.comm.Utils;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import org.joda.time.DateTime;
 
@@ -95,4 +96,18 @@ public class ToolUtils {
         throw new RuntimeException(message);
     }
 
+
+
+    /**
+     * 将一个java bean生成一个json object内容
+     *
+     * @param object
+     * @param cls
+     * @param <T>
+     * @return
+     */
+    public static <T> T objectToJson(Object object, Class<T> cls) {
+        String jsonStr = JSON.toJSONString(object);
+        return JSON.parseObject(jsonStr, cls);
+    }
 }

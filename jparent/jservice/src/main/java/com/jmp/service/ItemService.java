@@ -1,5 +1,6 @@
 package com.jmp.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.jmp.jpojo.PageListDTO;
 import com.jmp.sql.domain.Item;
 
@@ -25,7 +26,7 @@ public interface ItemService {
      * @param userId
      * @return
      */
-    Item detail(Long id, Long userId);
+    JSONObject detail(Long id, Long userId);
 
 
     /**
@@ -49,7 +50,7 @@ public interface ItemService {
      * @param name
      * @return
      */
-    PageListDTO<Item> list(String name, int page, int pageSize, Long userId);
+    PageListDTO<JSONObject> list(String name, int page, int pageSize, Long userId);
 
 
 

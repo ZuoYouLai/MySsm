@@ -1,7 +1,9 @@
 package com.jmp.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.google.common.collect.Lists;
 import com.jmp.comm.Utils.ToolUtils;
 import com.jmp.jpojo.PageListDTO;
 import com.jmp.service.ItemService;
@@ -11,6 +13,7 @@ import com.jmp.sql.mapper.ItemMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -28,11 +31,21 @@ public class ItemServiceImpl implements ItemService {
     @Autowired
     private ItemMapper itemMapper;
 
+    @Value("${project.ip}")
+    private String projectIp;
+
+    @Value("${projece.qr}")
+    private String qrEndIndex;
+
+
 
     @Override
     public Item createOneItem(Item item, Long userId) {
+        log.info("userId  :  {}", userId);
         item.setUpdatedAt(new Date());
         if (item.getId() != null) {
+            item.setUserId(userId);
+            item.setUpdatedAt(new Date());
             itemMapper.updateByPrimaryKeyWithBLOBs(item);
         }else{
             item.setCreatedAt(new Date());
@@ -43,7 +56,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public Item detail(Long id, Long userId) {
+    public JSONObject detail(Long id, Long userId) {
         ItemExample itemExample = new ItemExample();
         ItemExample.Criteria criteria = itemExample.createCriteria();
         criteria.andIdEqualTo(id);
@@ -54,7 +67,10 @@ public class ItemServiceImpl implements ItemService {
         if (itemList.isEmpty()) {
             ToolUtils.error("查无此商品内容");
         }
-        return itemList.get(0);
+        Item target = itemList.get(0);
+        String qrUrl = projectIp + "/item/" + target.getId() + qrEndIndex;
+        JSONObject finalObj = ToolUtils.objectToJson(target, JSONObject.class);
+        return finalObj;
     }
 
 
@@ -77,7 +93,7 @@ public class ItemServiceImpl implements ItemService {
 
 
     @Override
-    public PageListDTO<Item> list(String name, int page, int pageSize, Long userId) {
+    public PageListDTO<JSONObject> list(String name, int page, int pageSize, Long userId) {
         ItemExample itemExample = new ItemExample();
         ItemExample.Criteria criteria = itemExample.createCriteria();
         criteria.andUserIdEqualTo(userId);
@@ -86,10 +102,18 @@ public class ItemServiceImpl implements ItemService {
         }
         PageHelper.startPage(page, pageSize);
         List<Item> items = itemMapper.selectByExample(itemExample);
+        List<JSONObject> jsonObjectList = Lists.newArrayList();
+        items.forEach(x->{
+            JSONObject one = ToolUtils.objectToJson(x, JSONObject.class);
+            String qrUrl = projectIp + "/item/" + x.getId() + qrEndIndex;
+            one.put("qrUrl", qrUrl);
+            log.info(qrUrl);
+            jsonObjectList.add(one);
+        });
         PageInfo pageInfo = new PageInfo(items);
-        PageListDTO<Item> data = new PageListDTO<>(pageInfo.isIsFirstPage(), pageInfo.isIsLastPage(), pageInfo.getPageNum(),
+        PageListDTO<JSONObject> data = new PageListDTO<>(pageInfo.isIsFirstPage(), pageInfo.isIsLastPage(), pageInfo.getPageNum(),
                 pageInfo.getPageSize(), pageInfo.getPages(), pageInfo.getTotal(), pageInfo.getSize(),
-                items);
+                jsonObjectList);
         return data;
     }
 }

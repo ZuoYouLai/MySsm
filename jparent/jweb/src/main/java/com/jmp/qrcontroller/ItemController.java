@@ -80,17 +80,19 @@ public class ItemController {
     public String detail(HttpServletRequest request,@PathVariable("id") Long id) {
         String key = ToolUtils.getKey(Constant.ITEM_INDEX, id);
         String value = jedisService.get(key);
-        Item item = null;
+        JSONObject item = null;
         if (StringUtils.isBlank(value)) {
             log.info("from select id {}", id);
             item = itemService.detail(id, getOneUserId(request).getId());
             jedisService.set(key, JSON.toJSONString(item), 3, TimeUnit.HOURS);
         }else{
             log.info("from cache id {}", id);
-            item = JSON.parseObject(value, Item.class);
+            item = JSON.parseObject(value, JSONObject.class);
         }
         return ResultUtils.successJSON(item, "查询成功");
     }
+
+
 
 
 
@@ -98,14 +100,14 @@ public class ItemController {
     public String qrdetail(HttpServletRequest request,@PathVariable("id") Long id) {
         String key = ToolUtils.getKey(Constant.ITEM_INDEX, id);
         String value = jedisService.get(key);
-        Item item = null;
+        JSONObject item = null;
         if (StringUtils.isBlank(value)) {
             log.info("from select id {}", id);
             item = itemService.detail(id, null);
             jedisService.set(key, JSON.toJSONString(item), 3, TimeUnit.HOURS);
         }else{
             log.info("from cache id {}", id);
-            item = JSON.parseObject(value, Item.class);
+            item = JSON.parseObject(value, JSONObject.class);
         }
         return ResultUtils.successJSON(item, "查询成功");
     }
@@ -130,7 +132,7 @@ public class ItemController {
         if (pageSize == null) {
             pageSize = 10;
         }
-        PageListDTO<Item> listDTO = itemService.list(name, page, pageSize, getOneUserId(request).getId());
+        PageListDTO<JSONObject> listDTO = itemService.list(name, page, pageSize, getOneUserId(request).getId());
         return ResultUtils.successJSON(listDTO, "查询成功");
     }
 

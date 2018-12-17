@@ -1,7 +1,5 @@
 package com.jmp.comm;
 
-import com.jmp.comm.Utils.JsonData;
-import com.jmp.comm.Utils.JsonUtil;
 import com.jmp.comm.Utils.ResultUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.HandlerExceptionResolver;

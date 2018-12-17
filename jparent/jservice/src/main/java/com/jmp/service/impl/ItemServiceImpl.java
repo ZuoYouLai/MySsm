@@ -50,7 +50,7 @@ public class ItemServiceImpl implements ItemService {
         if (userId != null) {
             criteria.andUserIdEqualTo(userId);
         }
-        List<Item> itemList = itemMapper.selectByExample(itemExample);
+        List<Item> itemList = itemMapper.selectByExampleWithBLOBs(itemExample);
         if (itemList.isEmpty()) {
             ToolUtils.error("查无此商品内容");
         }
@@ -85,7 +85,7 @@ public class ItemServiceImpl implements ItemService {
             criteria.andNameLike(" %" + name + "% ");
         }
         PageHelper.startPage(page, pageSize);
-        List<Item> items = itemMapper.selectByExampleWithBLOBs(itemExample);
+        List<Item> items = itemMapper.selectByExample(itemExample);
         PageInfo pageInfo = new PageInfo(items);
         PageListDTO<Item> data = new PageListDTO<>(pageInfo.isIsFirstPage(), pageInfo.isIsLastPage(), pageInfo.getPageNum(),
                 pageInfo.getPageSize(), pageInfo.getPages(), pageInfo.getTotal(), pageInfo.getSize(),

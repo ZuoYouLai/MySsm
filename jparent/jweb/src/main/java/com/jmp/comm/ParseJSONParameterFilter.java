@@ -25,12 +25,6 @@ public class ParseJSONParameterFilter implements Filter {
         httpServletResponse.setCharacterEncoding("UTF-8");
         httpServletResponse.setContentType("text/json;charset=UTF-8");
         //TODO
-        httpServletResponse.setHeader("Access-Control-Allow-Origin", "*");
-        //此处ip地址为需要访问服务器的ip及端口号
-        httpServletResponse.setHeader("Access-Control-Allow-Credentials", "true");
-        httpServletResponse.setHeader("Access-Control-Allow-Methods", "GET, HEAD, POST, PUT, DELETE, TRACE, OPTIONS, PATCH");
-        httpServletResponse.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type,Token,Accept, Connection, User-Agent, Cookie");
-        httpServletResponse.setHeader("Access-Control-Max-Age", "3628800");
         if(StringUtils.isNotBlank(contentType) && contentType.startsWith("application/json")) {
              chain.doFilter(new PrettyFacesWrappedRequest((HttpServletRequest)request), response);
         } else {

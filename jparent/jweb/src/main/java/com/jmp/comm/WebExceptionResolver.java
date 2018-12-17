@@ -26,6 +26,7 @@ public class WebExceptionResolver implements HandlerExceptionResolver {
         log.error("unknown json exception, url:" + url, ex);
         log.error("error occur exception:" + ex.getMessage(), ex);
         response.setContentType("application/json;charset=utf-8");
+        response.setStatus(HttpServletResponse.SC_OK);
         try {
             response.getWriter().write(ResultUtils.failJSON(ex.getMessage()));
         } catch (IOException e) {

@@ -58,6 +58,7 @@ public class LoginController {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("loginTime", new DateTime().toString(Constant.DATE_YMD_HMS));
         jsonObject.put("token", token);
+        jsonObject.put("userName", userName);
         return ResultUtils.successJSON(jsonObject, "登录成功");
     }
 

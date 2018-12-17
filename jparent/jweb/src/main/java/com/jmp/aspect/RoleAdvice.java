@@ -3,6 +3,7 @@ package com.jmp.aspect;
 import com.jmp.annotation.MyDemo;
 import com.jmp.comm.Utils.Constant;
 import com.jmp.comm.Utils.ToolUtils;
+import com.jmp.jpojo.DefineException;
 import com.jmp.redis.JedisService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -51,7 +52,7 @@ public class RoleAdvice {
         String loginKey = ToolUtils.getKey(Constant.LOGIN_INDEX, token);
         String value = jedisService.get(loginKey);
         if (StringUtils.isBlank(value)) {
-            ToolUtils.error("token过期了请重新登录操作");
+            new DefineException(401, "token过期了请重新登录操作");
         }
         //拦截的方法
         Method method = ((MethodSignature) jp.getSignature()).getMethod();

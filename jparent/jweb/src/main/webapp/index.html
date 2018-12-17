@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="HandheldFriendly" content="true">
+  <meta content="yes" name="apple-mobile-web-app-capable">
+  <meta content="yes" name="apple-touch-fullscreen">
+  <meta name="x5-fullscreen" content="true">
+  <meta name="full-screen" content="yes">
+  <meta content="telephone=no,email=no" name="format-detection">
+  <meta name="App-Config" content="fullscreen=yes,useHistoryState=yes,transition=yes">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Ljia系统</title>
+  <link rel="stylesheet" href="/index.css?version=1.0.2"/>
+</head>
+<script>
+    //获取浏览器可视个高度
+    var winHeight = document.documentElement.clientHeight;
+    winHeight  = winHeight - 350;
+    var per_page = 20;
+
+    const formItemLayout = {
+        labelCol: {
+            span: 6,
+        },
+        wrapperCol: {
+            span: 14,
+        },
+    };
+</script>
+<body>
+
+<div id="root"></div>
+<script src="/index.js?version=1.0.2"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/3.3.2/echarts.common.min.js"></script>
+</body>
+</html>

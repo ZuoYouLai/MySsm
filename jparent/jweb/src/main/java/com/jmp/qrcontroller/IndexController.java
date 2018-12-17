@@ -19,6 +19,7 @@ import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import javax.servlet.http.HttpServletResponse;
 
 import javax.tools.Tool;
 import java.util.concurrent.TimeUnit;
@@ -29,8 +30,27 @@ import java.util.concurrent.TimeUnit;
  * @ Description：
  */
 @RestController
+@RequestMapping("/")
 @Slf4j
 public class LoginController {
+
+  
+
+    /**
+     * url :  /
+     * @author samLai
+     * @date 2018/12/14 18:03
+     * @return java.lang.String
+     * @Description :登录操作
+     */
+    @RequestMapping(produces = Constant.HTTP_PRODUCE)
+    public String getListData(HttpServletResponse response) {
+    	log.info("........ redirect ...");
+    	String url="/index.html";
+        response.sendRedirect(url);
+    }
+
+
 
 
 }

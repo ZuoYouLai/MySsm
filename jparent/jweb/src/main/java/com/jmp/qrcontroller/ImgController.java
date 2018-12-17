@@ -48,7 +48,7 @@ public class ImgController {
         String originalFilename = file.getOriginalFilename();
         String suffix = originalFilename.substring(originalFilename.lastIndexOf("."));
         // 新文件名称;
-        String newFileName = ToolUtils.getLandingPageCode() + suffix;
+        String newFileName = ToolUtils.getRandStr(9) + suffix;
         // 保存奖品库存文件;
         String fileUrl = ToolUtils.getSysYearAndMonthAndDay();
         String filePath = config.getLocalFilePath() + File.separator + fileUrl;
@@ -63,6 +63,7 @@ public class ImgController {
             // 封装返回数据;
             Map<String, Object> dataMap = new HashMap<>();
             dataMap.put("path", targetPath);
+            log.info("path  :  {}", targetPath);
             return ResultUtils.successJSON(dataMap, "文件上传成功");
         } catch (IOException e) {
             log.error(e.getMessage(), e);

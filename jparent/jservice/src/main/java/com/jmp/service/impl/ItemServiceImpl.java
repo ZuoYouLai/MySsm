@@ -52,7 +52,7 @@ public class ItemServiceImpl implements ItemService {
             Item ik = itemList.get(0);
             item.setUpdatedAt(new Date());
             ik.setContent(item.getContent());
-            itemMapper.updateByPrimaryKeyWithBLOBs(item);
+            itemMapper.updateByPrimaryKeyWithBLOBs(ik);
         }else{
             item.setCreatedAt(new Date());
             item.setUserId(userId);

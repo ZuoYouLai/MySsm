@@ -1,5 +1,4 @@
 package com.jmp.qrcontroller;
-package com.jmp.qrcontroller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -32,7 +31,7 @@ import java.util.concurrent.TimeUnit;
 @RestController
 @RequestMapping("/")
 @Slf4j
-public class LoginController {
+public class IndexController {
 
   
 

@@ -43,7 +43,7 @@ public class IndexController {
      * @Description :登录操作
      */
     @RequestMapping(produces = Constant.HTTP_PRODUCE)
-    public String getListData(HttpServletResponse response) {
+    public void getListData(HttpServletResponse response) throws Exception  {
     	log.info("........ redirect ...");
     	String url="/index.html";
         response.sendRedirect(url);

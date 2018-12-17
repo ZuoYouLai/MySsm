@@ -106,6 +106,7 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public PageListDTO<JSONObject> list(String name, int page, int pageSize, Long userId) {
         ItemExample itemExample = new ItemExample();
+        itemExample.setOrderByClause(" updated_at desc ");
         ItemExample.Criteria criteria = itemExample.createCriteria();
         criteria.andUserIdEqualTo(userId);
         if (StringUtils.isNotBlank(name)) {

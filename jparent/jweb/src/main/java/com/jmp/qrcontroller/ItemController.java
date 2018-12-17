@@ -97,7 +97,7 @@ public class ItemController {
 
 
     @RequestMapping(value = "/{id}/qr", method = RequestMethod.GET)
-    public String qrdetail(HttpServletRequest request,@PathVariable("id") Long id) {
+    public String qrdetail(@PathVariable("id") Long id) {
         String key = ToolUtils.getKey(Constant.ITEM_INDEX, id);
         String value = jedisService.get(key);
         JSONObject item = null;
@@ -148,7 +148,7 @@ public class ItemController {
      * @params [id]
      * @Description :
      */
-    @RequestMapping(value = "/{id}/destroy", method = RequestMethod.POST)
+    @RequestMapping(value = "/{id}/destroy", method = RequestMethod.GET)
     public String deleteTag(@PathVariable("id") Long id, HttpServletRequest request) {
         int size = itemService.delOneItem(id, getOneUserId(request).getId());
         String key = ToolUtils.getKey(Constant.ITEM_INDEX, id);

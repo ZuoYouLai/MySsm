@@ -24,7 +24,8 @@ public class ParseJSONParameterFilter implements Filter {
         HttpServletResponse httpServletResponse= (HttpServletResponse) response;
         httpServletResponse.setCharacterEncoding("UTF-8");
         httpServletResponse.setContentType("text/json;charset=UTF-8");
-
+        //TODO
+        httpServletResponse.setHeader("Access-Control-Allow-Origin", "*");
         if(StringUtils.isNotBlank(contentType) && contentType.startsWith("application/json")) {
              chain.doFilter(new PrettyFacesWrappedRequest((HttpServletRequest)request), response);
         } else {

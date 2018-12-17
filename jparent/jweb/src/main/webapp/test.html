@@ -1,0 +1,22 @@
+<html>
+<body>
+<h2>测试跨域的问题</h2>
+</body>
+
+<script src="jquery.min.js"></script>
+<script>
+    $(function(){
+        $.ajax({
+            type: "GET",
+            url: "http://ljia.xyz/item/5/qr",
+            data: {},
+            dataType: "json",
+            success: function (data) {
+                alert(JSON.stringify(data));
+            }
+        })
+    });
+</script>
+
+
+</html>

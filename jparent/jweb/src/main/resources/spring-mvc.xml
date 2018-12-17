@@ -46,6 +46,8 @@
                         <value>application/json;charset=UTF-8</value>
                     </list>
                 </property>
+                <!-- 去掉resquest body大量的返回内容的设置 -->
+                <property name="writeAcceptCharset" value="false" />
             </bean>
         </mvc:message-converters>
     </mvc:annotation-driven>

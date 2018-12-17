@@ -29,31 +29,8 @@ import java.util.concurrent.TimeUnit;
  * @ Description：
  */
 @RestController
-//@RequestMapping("/")
 @Slf4j
 public class LoginController {
-
-    @Autowired
-    JedisService jedisService;
-    @Autowired
-    private LoginService loginService;
-
-
-    /**
-     * method :  post
-     * url :  /login
-     * @author samLai
-     * @date 2018/12/14 18:03
-     * @params [userName --> string  , password --> string]
-     * @return java.lang.String
-     * @Description :跳转界面内容
-     */
-    // @RequestMapping(produces = Constant.HTTP_PRODUCE, method = RequestMethod.POST)
-    // public void getListData(String userName, String password) {
-        
-    // }
-
-
 
 
 }

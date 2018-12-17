@@ -70,6 +70,7 @@ public class ItemServiceImpl implements ItemService {
         Item target = itemList.get(0);
         String qrUrl = projectIp + "/item/" + target.getId() + qrEndIndex;
         JSONObject finalObj = ToolUtils.objectToJson(target, JSONObject.class);
+        finalObj.put("qrUrl", qrUrl);
         return finalObj;
     }
 

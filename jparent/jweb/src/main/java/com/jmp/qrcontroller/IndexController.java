@@ -14,10 +14,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.ModelMap;
 import org.springframework.util.Assert;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import javax.tools.Tool;
@@ -29,24 +33,32 @@ import java.util.concurrent.TimeUnit;
  * @ Description：
  */
 @RestController
-@RequestMapping("/")
 @Slf4j
 public class IndexController {
 
-  
+
+    @Autowired
+    JedisService jedisService;
+
 
     /**
-     * url :  /
+     * method :  post
+     * url :  /login
+     *
+     * @return java.lang.String
      * @author samLai
      * @date 2018/12/14 18:03
-     * @return java.lang.String
+     * @params [userName --> string  , password --> string]
      * @Description :登录操作
      */
-    @RequestMapping(produces = Constant.HTTP_PRODUCE)
-    public void getListData(HttpServletResponse response) throws Exception  {
-    	log.info("........ redirect ...");
-    	String url="/index.html";
-        response.sendRedirect(url);
+    @RequestMapping(value = {"/logout"}, produces = Constant.HTTP_PRODUCE, method = RequestMethod.GET)
+    public String getListData(HttpServletRequest request) {
+        String token = request.getHeader("token");
+        if (StringUtils.isNotBlank(token)) {
+            String loginKey = ToolUtils.getKey(Constant.LOGIN_INDEX, token);
+            jedisService.del(loginKey);
+        }
+        return ResultUtils.successJSON("登出成功");
     }
 
 

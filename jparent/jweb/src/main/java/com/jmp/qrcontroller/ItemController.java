@@ -15,8 +15,10 @@ import com.jmp.sql.domain.Passports;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.ModelMap;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -90,6 +92,9 @@ public class ItemController {
             log.info("from cache id {}", id);
             item = JSON.parseObject(value, JSONObject.class);
         }
+        if (item == null) {
+            return ResultUtils.failJSON("查无此信息内容");
+        }
         return ResultUtils.successJSON(item, "查询成功");
     }
 
@@ -110,8 +115,16 @@ public class ItemController {
             log.info("from cache id {}", id);
             item = JSON.parseObject(value, JSONObject.class);
         }
+        if (item == null) {
+            return ResultUtils.failJSON("查无此信息内容");
+        }
         return ResultUtils.successJSON(item, "查询成功");
     }
+
+
+
+
+
 
 
     /**

@@ -27,13 +27,13 @@ public class WebExceptionResolver implements HandlerExceptionResolver {
         ServletOutputStream out = null;
         try {
             out = response.getOutputStream();
-            //自定义异常的处理操作
-            DefineException target = (DefineException) ex;
             if (ex instanceof DefineException) {
+                //自定义异常的处理操作
+                DefineException target = (DefineException) ex;
                 out.write(ResultUtils.failJSON(target.getMessage(), target.getErrorCode()).getBytes("UTF-8"));
                 log.info("自定义的异常内容  ：  {}   code ： {}", target.getMessage(), target.getErrorCode());
             } else {
-                response.getWriter().write(ResultUtils.failJSON(ex.getMessage()));
+                out.write(ResultUtils.failJSON(ex.getMessage()).getBytes("UTF-8"));
             }
             return null;
         } catch (IOException e) {

@@ -1,0 +1,46 @@
+<html>
+<title id="title"></title>
+<body id="tbody">
+
+</body>
+<script src="jquery.min.js"></script>
+<script>
+
+    function GetRequest() {
+        var url = location.search; //获取url中"?"符后的字串
+        var theRequest = {};
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1);
+            strs = str.split("&");
+            for(var i = 0; i < strs.length; i ++) {
+                theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
+            }
+        }
+        return theRequest;
+    }
+
+    $(function(){
+        var kobj = GetRequest();
+        console.log("data " + JSON.stringify(kobj));
+        if(kobj["id"]) {
+            $.ajax({
+                type: "GET",
+                url: "http://ljia.xyz/item/" + kobj["id"] + "/qr",
+                data: {},
+                dataType: "json",
+                success: function (data) {
+                    var content=data.data;
+                    if(content && content["id"]){
+                        $("#title").html(content["title"]);
+                        $("#tbody").html(content["content"]);
+                    }else{
+                        window.location.href = "404.html";
+                    }
+                }
+            });
+        }else{
+            window.location.href = "404.html";
+        }
+    });
+</script>
+</html>

@@ -1,5 +1,7 @@
 package com.jmp.comm;
 
+import com.jmp.comm.Utils.ToolUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.*;
@@ -11,6 +13,7 @@ import java.io.IOException;
  * @description:
  * @date: 2018-05-14 15:24
  */
+@Slf4j
 public class ParseJSONParameterFilter implements Filter {
 
 
@@ -25,6 +28,7 @@ public class ParseJSONParameterFilter implements Filter {
         httpServletResponse.setCharacterEncoding("UTF-8");
         httpServletResponse.setContentType("text/json;charset=UTF-8");
         //TODO
+        log.info("************     ip   :   {}     ************", ToolUtils.getRealIpAddress(httpServletRequest));
         if(StringUtils.isNotBlank(contentType) && contentType.startsWith("application/json")) {
              chain.doFilter(new PrettyFacesWrappedRequest((HttpServletRequest)request), response);
         } else {

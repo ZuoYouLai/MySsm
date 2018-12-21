@@ -50,7 +50,8 @@ public class ItemServiceImpl implements ItemService {
                 throw new RuntimeException("查无此商品");
             }
             Item ik = itemList.get(0);
-            item.setUpdatedAt(new Date());
+            ik.setUpdatedAt(new Date());
+            ik.setName(item.getName());
             ik.setContent(item.getContent());
             itemMapper.updateByPrimaryKeyWithBLOBs(ik);
         }else{

@@ -52,7 +52,7 @@ public class RoleAdvice {
         String loginKey = ToolUtils.getKey(Constant.LOGIN_INDEX, token);
         String value = jedisService.get(loginKey);
         if (StringUtils.isBlank(value)) {
-            new DefineException(401, "token过期了请重新登录操作");
+            throw new DefineException(401, "token过期了请重新登录操作");
         }
         //拦截的方法
         Method method = ((MethodSignature) jp.getSignature()).getMethod();

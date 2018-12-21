@@ -33,6 +33,8 @@ CREATE TABLE `passports` (
 
 
 
+
+ALTER TABLE item MODIFY COLUMN content TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 DROP TABLE item;
 CREATE TABLE `item` (
   `id` BIGINT(20) NOT NULL AUTO_INCREMENT,

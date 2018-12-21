@@ -47,7 +47,7 @@ public class RoleAdvice {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         String token = request.getHeader("token");
         if (StringUtils.isBlank(token)) {
-            ToolUtils.error("头部信息不能为空");
+            throw new DefineException(401, "头部信息不能为空");
         }
         String loginKey = ToolUtils.getKey(Constant.LOGIN_INDEX, token);
         String value = jedisService.get(loginKey);

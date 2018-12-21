@@ -50,13 +50,13 @@ public class UserPointServiceTest {
       @Test
       public void test0021(){
           Passports passports = new Passports();
-          passports.setAccount("lhd");
-          passports.setEmail("lhd");
+          passports.setAccount("lsq");
+          passports.setEmail("lsq");
           String salt = ToolUtils.getRandStr(6);
           passports.setSalt(salt);
           passports.setCreatedAt(new Date());
           passports.setUpdatedAt(new Date());
-          passports.setPassword(AESUtil.aesEncode("lhd", salt));
+          passports.setPassword(AESUtil.aesEncode("lsq", salt));
           passportsMapper.insertSelective(passports);
       }
 

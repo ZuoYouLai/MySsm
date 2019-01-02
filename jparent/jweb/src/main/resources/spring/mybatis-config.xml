@@ -25,7 +25,7 @@
         <setting name="defaultStatementTimeout" value="25000"/>
         <setting name="logImpl" value="SLF4J"/>
         <!-- 打印sql语句,调试非常有用 -->
-        <setting name="logImpl" value="STDOUT_LOGGING"/>
+        <!--<setting name="logImpl" value="STDOUT_LOGGING"/>-->
         <!-- 开启驼峰命名 -->
         <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>

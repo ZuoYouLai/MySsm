@@ -13,7 +13,7 @@ CREATE TABLE `user` (
   `created_at` DATETIME DEFAULT NULL COMMENT '创建时间',
   `updated_at` DATETIME DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`)
-) ENGINE=INNODB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=INNODB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
 
@@ -29,13 +29,13 @@ CREATE TABLE `passports` (
   `created_at` DATETIME DEFAULT NULL COMMENT '创建时间',
   `updated_at` DATETIME DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`)
-) ENGINE=INNODB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=INNODB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
 
 
-ALTER TABLE item MODIFY COLUMN content TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-DROP TABLE item;
+# ALTER TABLE item MODIFY COLUMN content TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+#DROP TABLE item;
 CREATE TABLE `item` (
   `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
   `user_id` BIGINT(20) NOT NULL COMMENT '商户id',
@@ -45,7 +45,7 @@ CREATE TABLE `item` (
   `created_at` DATETIME DEFAULT NULL COMMENT '创建时间',
   `updated_at` DATETIME DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`)
-) ENGINE=INNODB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=INNODB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
 
@@ -59,7 +59,7 @@ CREATE TABLE `user_point` (
   `created_at` DATETIME DEFAULT NULL COMMENT '创建时间',
   `updated_at` DATETIME DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`)
-) ENGINE=INNODB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=INNODB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
 
@@ -69,4 +69,4 @@ CREATE TABLE `user_file` (
   `file_name` VARCHAR(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '文件名称',
   `file_path` VARCHAR(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '文件路径',
   PRIMARY KEY (`id`)
-) ENGINE=INNODB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=INNODB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
